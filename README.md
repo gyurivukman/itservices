@@ -31,11 +31,10 @@ Az operátorok tevékenységköre:
    * stb
 
 **Manager Operátor**
+* Beosztott operátorok tevékenységének ellenőrzése (Megoldott/in progress requestek száma, azok megtekintése, kommentek elolvasása)
+* Eszkalált requestek kezelése
+* Operátorok hozzárendelése/leválasztása application  areak-hoz és taskokhoz.
 
-    * Beosztott operátorok tevékenységének ellenőrzése (Megoldott/in progress requestek száma, azok megtekintése, kommentek elolvasása)
-    * Eszkalált requestek kezelése
-    * Operátorok hozzárendelése/leválasztása application  areak-hoz és taskokhoz.
-    
 **Admin**
 Adminisztrátorok tevékenyégköre:
    *  Új szolgáltatás felvétele, szolgáltatás módosítása, törlése (archiválás)
