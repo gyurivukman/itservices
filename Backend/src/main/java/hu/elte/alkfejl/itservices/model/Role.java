@@ -6,7 +6,6 @@ import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import hu.elte.alkfejl.itservices.model.Permission;
 
 /**
  *
@@ -21,17 +20,16 @@ import hu.elte.alkfejl.itservices.model.Permission;
 @EqualsAndHashCode(callSuper = true)
 public class Role extends BaseEntity{
     
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false, unique = true)
-    private RoleName name;
+    private String name;
     
     @ManyToMany(targetEntity=Permission.class)
     @ElementCollection(targetClass=Permission.class)
-    @Enumerated(EnumType.STRING)
     private List<Permission> permissions;
     
 }
-
+/*
 enum RoleName {
         GUEST, EMPLOYEE, OPERATOR, OPERATOR_MANAGER, ADMIN
     }
+*/

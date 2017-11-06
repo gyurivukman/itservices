@@ -14,20 +14,12 @@ import lombok.NoArgsConstructor;
  */
 
 @Entity
-@Table(name = "services")
+@Table(name = "applicationareas")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Service extends BaseEntity{
-    
+public class ApplicationArea extends BaseEntity{
     @Column(nullable = false, unique = true)
     private String name;
-    
-    @Column(nullable = false)
-    private String description;
-    
-    @Column(nullable = false)
-    private String iconFileName;
-    
 }
