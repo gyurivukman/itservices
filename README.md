@@ -23,6 +23,8 @@ Az alkalmazottaknak legyen lehetőségük szolgáltatásokat igényelni, mint p�
    * Céges e-mail igénylés
    * stb
 
+Továbbá legyen képes a megigényelt szolgáltatások állapotát leellenőrizni (folyamatban levő és lezártak is) valamint a folyamatban levőkhöz kommenteket írni vagy a saját kommentjeit szerkeszteni.
+
 **Operátor**
 Az operátorok tevékenységköre:
    * A különböző requestek állapotának megváltoztatása(Approve, disapprove, lezár, újranyit, információt kér, prioritást változtat, stb)
