@@ -9,7 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import javax.persistence.ElementCollection;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 
 /**
  *
@@ -44,8 +45,9 @@ public class Permission extends BaseEntity{
         EDIT_USER_CREDENTIALS
     }
   */  
-    
-    @ManyToMany(targetEntity = Role.class)
-    @ElementCollection(targetClass=Role.class)
+    @ManyToMany
+    @JoinTable(name="roles_permissions",
+     joinColumns=@JoinColumn(name="role_id"),
+        inverseJoinColumns=@JoinColumn(name="permission_id "))
     private List<Role> roles;   
 }

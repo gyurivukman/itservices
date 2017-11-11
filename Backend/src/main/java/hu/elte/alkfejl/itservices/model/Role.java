@@ -23,8 +23,10 @@ public class Role extends BaseEntity{
     @Column(nullable = false, unique = true)
     private String name;
     
-    @ManyToMany(targetEntity=Permission.class)
-    @ElementCollection(targetClass=Permission.class)
+    @ManyToMany
+    @JoinTable(name="roles_permissions",
+         joinColumns=@JoinColumn(name="permission_id"),
+            inverseJoinColumns=@JoinColumn(name="role_id"))
     private List<Permission> permissions;
     
 }

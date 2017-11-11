@@ -1,6 +1,7 @@
 package hu.elte.alkfejl.itservices.controller;
 
 import hu.elte.alkfejl.itservices.model.User;
+import org.springframework.web.bind.annotation.ResponseBody;
 import hu.elte.alkfejl.itservices.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,10 +20,10 @@ public class UserController {
     /*
     @Autowired
     private UserService userService;
-*/
+    */
     @GetMapping("/greet")
-    public String greeting(@RequestParam(value = "name", required = false, defaultValue = "World") String name, Model appmodel) {
-        System.out.println("SAJTOS TÉSZTA: "+name);
+    @ResponseBody
+    public String greeting(/*@RequestParam(value = "name", required = false, defaultValue = "World") String name, Model appmodel*/) {
         //appmodel.addAttribute("name", name);
         return "greeting";
     }
