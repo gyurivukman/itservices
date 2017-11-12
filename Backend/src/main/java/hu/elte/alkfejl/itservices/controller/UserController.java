@@ -1,5 +1,6 @@
 package hu.elte.alkfejl.itservices.controller;
 
+import hu.elte.alkfejl.itservices.model.Role;
 import hu.elte.alkfejl.itservices.model.User;
 import org.springframework.web.bind.annotation.ResponseBody;
 import hu.elte.alkfejl.itservices.service.UserService;
@@ -26,6 +27,19 @@ public class UserController {
     public String greeting(/*@RequestParam(value = "name", required = false, defaultValue = "World") String name, Model appmodel*/) {
         //appmodel.addAttribute("name", name);
         return "greeting";
+    }
+    
+    @GetMapping("/userjson")
+    @ResponseBody
+    public User userJson() {
+        User ret = new User("username", "email", "pw", new Role());
+        return ret;
+    }
+    
+    @PostMapping("/post")
+    @ResponseBody
+    public void postTest(@RequestBody User user) {
+        System.out.println("POST küldi: " + user.toString());
     }
 
     @GetMapping("/login")

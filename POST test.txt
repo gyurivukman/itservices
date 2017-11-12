@@ -1,0 +1,3 @@
+curl.exe -H "Content-Type: application/json" -X POST -d "{\"username\":\"username\",\"email\":\"email\",\"password\":\"pw\",\"role\":{\"name\":null,\"permissions\":null,\"id\":0,\"version\":0},\"id\":0,\"version\":0}" http://localhost:8080/user/post
+
+curl.exe -H "Accept: application/json" -H "Content-type: application/json" -X POST -d "{\"username\":\"username\",\"email\":\"email\",\"password\":\"pw\",\"role\":{\"name\":null,\"permissions\":null,\"id\":0,\"version\":0},\"id\":0,\"version\":0}" http://localhost:8080/user/post
