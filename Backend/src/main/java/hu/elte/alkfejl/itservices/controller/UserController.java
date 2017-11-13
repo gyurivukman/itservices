@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import repository.UserRepository;
+import repository.UserRepositoryImpl;
 
 /**
  *
@@ -18,6 +20,14 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
+    UserRepositoryImpl userRepository;
+    
+    public UserController() {
+        this.userRepository = new UserRepositoryImpl();
+    }
+    
+    
     /*
     @Autowired
     private UserService userService;
@@ -40,6 +50,7 @@ public class UserController {
     @ResponseBody
     public void postTest(@RequestBody User user) {
         System.out.println("POST küldi: " + user.toString());
+        this.userRepository.addUser(user);
     }
 
     @GetMapping("/login")
