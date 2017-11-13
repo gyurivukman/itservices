@@ -1,7 +1,10 @@
 package hu.elte.alkfejl.itservices.controller;
 
 import hu.elte.alkfejl.itservices.model.User;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +27,19 @@ public class AuthenticationController {
     
     @PostMapping("/login")
     @ResponseBody
-    public void login(@RequestParam String username, @RequestParam String password) {
+    public void login(@RequestBody Map<String, String> requestParams) {    
+        String username = requestParams.get("username");
+        String password = requestParams.get("password");
         System.out.println("Login POST küldi: " + username + " " + password);
+    }
+    
+    @GetMapping("/sampleloginjson")
+    @ResponseBody
+    public Map<String, String> testLogin() {
+        Map<String, String> requestParams = new HashMap();
+        requestParams.put("username", "Sanyi");
+        requestParams.put("password", "ayy lmao");
+        return requestParams;
     }
        
 }
