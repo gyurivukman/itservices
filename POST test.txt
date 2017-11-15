@@ -2,4 +2,9 @@ curl.exe -H "Content-Type: application/json" -X POST -d "{\"username\":\"usernam
 
 curl.exe -H "Accept: application/json" -H "Content-type: application/json" -X POST -d "{\"username\":\"username\",\"email\":\"email\",\"password\":\"pw\",\"role\":{\"name\":null,\"permissions\":null,\"id\":0,\"version\":0},\"id\":0,\"version\":0}" http://localhost:8080/user/post
 
-curl.exe -H "Accept: application/json" -H "Content-type: application/json" -X POST -d "{\"password\":\"ayy lmao\",\"username\":\"Sanyi\"}" http://localhost:8080/auth/login
+curl.exe -H "Accept: application/json" -H "Content-type: application/json" -X POST -d "{\"password\":\"ayy lmao\",\"username\":\"Sanyi\"}" http://localhost:8080/auth/register
+
+#This one is for registration testing.
+curl.exe -H "Accept: application/json" -H "Content-type: application/json" -X POST -d "{\"username\":\"unamea\",\"password\":\"Password1234\",\"email\":\"asdasd@asd.com\",\"employeeid\":\"01234567\",\"forename\":\"forename\",\"surname\":\"surname\"}" http://localhost:8080/auth/register
+
+curl.exe -H "Accept: application/json" -H "Content-type: application/json" -X POST -d "{\"username\":\"unamas5237647sadasdea\",\"password\":\"kukken\",\"email\":\"asd\",\"employeeid\":\"012asdasdsad67\"}" http://localhost:8080/auth/register

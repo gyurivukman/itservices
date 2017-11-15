@@ -1,4 +1,4 @@
--- --------------------------------------------------------
+﻿-- --------------------------------------------------------
 -- Host:                         127.0.0.1
 -- Server version:               5.7.20-log - MySQL Community Server (GPL)
 -- Server OS:                    Win64
@@ -136,7 +136,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
-  `role_id` int(11) DEFAULT NULL,
+  `role_id` int(11) NOT NULL DEFAULT 2,
+  `forename` varchar(255) NOT NULL,
+  `surname` varchar(255) NOT NULL,
+  `employeeid` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_6dotkott2kjsp8vw4d0m25fb7` (`email`),
   UNIQUE KEY `UK_r43af9ap4edm43mmtq01oddj6` (`username`),

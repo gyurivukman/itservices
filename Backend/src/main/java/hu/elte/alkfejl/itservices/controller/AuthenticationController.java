@@ -27,8 +27,18 @@ public class AuthenticationController {
     
     @PostMapping("/register")
     @ResponseBody
-    public void register(@RequestBody User user) {
-        System.out.println("Register POST küldi: " + user.toString());
+    public ResponseEntity register(@RequestBody Map<String,String> userData) {
+        ResponseEntity res;
+        HashMap<String,String> errors = authService.attemptUserRegistration(userData);
+        
+        if(errors.isEmpty()){
+            res = ResponseEntity.status(HttpStatus.OK).build();
+        }
+        else{
+            res= ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(errors);
+        }
+        
+        return res;
     }
     
     @PostMapping("/login")
@@ -41,13 +51,4 @@ public class AuthenticationController {
         return ResponseEntity.status(HttpStatus.OK).body(this.authService.generateJWT(username));
     }
     
-    @GetMapping("/sampleloginjson")
-    @ResponseBody
-    public Map<String, String> testLogin() {
-        Map<String, String> requestParams = new HashMap();
-        requestParams.put("username", "Sanyi");
-        requestParams.put("password", "ayy lmao");
-        return requestParams;
-    }
-       
 }

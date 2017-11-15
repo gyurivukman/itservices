@@ -3,13 +3,9 @@ package hu.elte.alkfejl.itservices.controller;
 import hu.elte.alkfejl.itservices.model.Role;
 import hu.elte.alkfejl.itservices.model.User;
 import org.springframework.web.bind.annotation.ResponseBody;
-import hu.elte.alkfejl.itservices.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import hu.elte.alkfejl.itservices.repository.UserRepository;
 import hu.elte.alkfejl.itservices.repository.UserRepositoryImpl;
 
 /**
@@ -27,7 +23,6 @@ public class UserController {
         this.userRepository = new UserRepositoryImpl();
     }
     
-    
     /*
     @Autowired
     private UserService userService;
@@ -39,18 +34,11 @@ public class UserController {
         return "greeting";
     }
     
-    @GetMapping("/userjson")
-    @ResponseBody
-    public User userJson() {
-        User ret = new User("username", "email", "pw", new Role());
-        return ret;
-    }
-    
     @PostMapping("/post")
     @ResponseBody
     public void postTest(@RequestBody User user) {
         System.out.println("POST küldi: " + user.toString());
-        this.userRepository.addUser(user);
+        //this.userRepository.addUser(user);
     }
 
     @GetMapping("/login")

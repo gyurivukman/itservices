@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 /**
@@ -32,10 +33,19 @@ public class User extends BaseEntity {
     private String email;
 
     @Column(nullable = false)
+    private String forename;
+    
+    @Column(nullable = false)
+    private String surname;
+    
+    @Column(nullable = false)
     private String password;
     
+    @Column(nullable = false)
+    private String employeeid;
+    
     @ManyToOne(targetEntity = Role.class)
-    @Enumerated(EnumType.STRING)
+    @JoinColumn(insertable=false)
     private Role role;
     
 }

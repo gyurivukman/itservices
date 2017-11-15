@@ -30,8 +30,3 @@ public class Role extends BaseEntity{
     private List<Permission> permissions;
     
 }
-/*
-enum RoleName {
-        GUEST, EMPLOYEE, OPERATOR, OPERATOR_MANAGER, ADMIN
-    }
-*/
