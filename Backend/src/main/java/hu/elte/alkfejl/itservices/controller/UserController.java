@@ -9,8 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import repository.UserRepository;
-import repository.UserRepositoryImpl;
+import hu.elte.alkfejl.itservices.repository.UserRepository;
+import hu.elte.alkfejl.itservices.repository.UserRepositoryImpl;
 
 /**
  *

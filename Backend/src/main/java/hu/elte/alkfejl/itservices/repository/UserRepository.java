@@ -1,4 +1,4 @@
-package repository;
+package hu.elte.alkfejl.itservices.repository;
 
 import hu.elte.alkfejl.itservices.model.User;
 import java.io.Serializable;
