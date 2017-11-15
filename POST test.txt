@@ -5,6 +5,7 @@ curl.exe -H "Accept: application/json" -H "Content-type: application/json" -X PO
 curl.exe -H "Accept: application/json" -H "Content-type: application/json" -X POST -d "{\"password\":\"ayy lmao\",\"username\":\"Sanyi\"}" http://localhost:8080/auth/register
 
 #This one is for registration testing.
+VALID data
 curl.exe -H "Accept: application/json" -H "Content-type: application/json" -X POST -d "{\"username\":\"unamea\",\"password\":\"Password1234\",\"email\":\"asdasd@asd.com\",\"employeeid\":\"01234567\",\"forename\":\"forename\",\"surname\":\"surname\"}" http://localhost:8080/auth/register
-
+INVALID data
 curl.exe -H "Accept: application/json" -H "Content-type: application/json" -X POST -d "{\"username\":\"unamas5237647sadasdea\",\"password\":\"kukken\",\"email\":\"asd\",\"employeeid\":\"012asdasdsad67\"}" http://localhost:8080/auth/register

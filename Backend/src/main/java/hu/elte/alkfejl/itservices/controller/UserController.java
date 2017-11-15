@@ -26,10 +26,10 @@ public class UserController {
     /*
     @Autowired
     private UserService userService;
-    */
+    
     @GetMapping("/greet")
     @ResponseBody
-    public String greeting(/*@RequestParam(value = "name", required = false, defaultValue = "World") String name, Model appmodel*/) {
+    public String greeting(/*@RequestParam(value = "name", required = false, defaultValue = "World") String name, Model appmodel) {
         //appmodel.addAttribute("name", name);
         return "greeting";
     }
@@ -47,7 +47,7 @@ public class UserController {
         return "login";
     }
 
-    /*
+    
     @PostMapping("/login")
     public String login(@ModelAttribute User user, Model appmodel) {
         if (userService.isValid(user)) {
