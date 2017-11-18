@@ -39,8 +39,8 @@ public class AuthenticationService {
     public HashMap<String,String> validateUserDataForm(Map<String,String> userData){
         HashMap<String,String> errors = new HashMap<>();
         
-        if(!validateUserNameFormat(userData.get("username"))) errors.put("username", "Username must be 5-13 characters long, have at least 1 uppercase letter, 1 lowercase  letter and 1 number");
-        if(!validatePasswordFormat(userData.get("password"))) errors.put("password", "Password must be 5-13 least 8 characters long, have 1 uppercase letter, 1 lowercase letter and 1 number");
+        if(!validateUserNameFormat(userData.get("username"))) errors.put("username", "Username must be 5-13 characters long, and can only contain lower and uppercase letters");
+        if(!validatePasswordFormat(userData.get("password"))) errors.put("password", "Password must be 8-13 characters long, have 1 uppercase letter, 1 lowercase letter and 1 number");
         if(!validateEmailFormat(userData.get("email"))) errors.put("email", "Invalid email format!");
         if(!validateEmployeeId(userData.get("employeeid"))) errors.put("employeeid","Invalid employee id!");
         
@@ -48,11 +48,14 @@ public class AuthenticationService {
     }
     
     private boolean validateUserNameFormat(String username){
-        return username.matches("^[a-zA-Z0-9]{5,13}$");
+        return username.matches("^[a-zA-Z]{5,13}$");
     }
     
-    private boolean validatePasswordFormat(String password){
-        return password.matches("^[a-zA-Z0-9]{5,13}$");
+    private boolean validatePasswordFormat(String password){ 
+        boolean hasUppercase = password.matches(".*[A-Z]+.*");
+        boolean hasNumber = password.matches(".*[0-9]+.*");
+        boolean correctLength = password.matches("^[a-zA-Z0-9]{5,13}$");
+        return hasUppercase && hasNumber && correctLength;
     }
     
     private boolean validateEmailFormat(String email){
