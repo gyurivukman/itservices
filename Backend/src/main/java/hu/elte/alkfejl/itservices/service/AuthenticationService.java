@@ -30,7 +30,9 @@ public class AuthenticationService {
     
     public HashMap<String,String> attemptUserRegistration(Map<String,String> userData){
         HashMap<String,String> errors = validateUserDataForm(userData);
-        if(errors.isEmpty()) userRepository.addUser(userData);
+        if(errors.isEmpty()) {
+            errors = userRepository.addUser(userData);
+        }
         return errors;
     }
     

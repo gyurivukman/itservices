@@ -1,5 +1,6 @@
 package hu.elte.alkfejl.itservices.repository;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -7,5 +8,5 @@ import java.util.Map;
  * @author simon
  */
 public interface UserRepositoryCustom {
-    public void addUser(Map<String,String> userData);
+    public HashMap<String, String> addUser(Map<String,String> userData);
 }
