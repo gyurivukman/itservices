@@ -1,6 +1,6 @@
 import { Component, OnInit }  from '@angular/core';
-import { Router}  from '@angular/router';
-import {HttpClient,HttpHeaders} from '@angular/common/http'
+import { Router } from '@angular/router';
+import {AuthService} from '../authservice/auth.service'
 
 @Component({
   selector: 'app-login',
@@ -10,7 +10,7 @@ import {HttpClient,HttpHeaders} from '@angular/common/http'
 export class LoginComponent implements OnInit{
   private loginerror:String;
 
-  constructor(private router:Router,private http:HttpClient) {}
+  constructor(private router:Router,private authService:AuthService) {}
 
   ngOnInit() {
     if(localStorage.getItem("jwtToken")){ //check if its valid, dont just wether it exists or not.
@@ -22,21 +22,15 @@ export class LoginComponent implements OnInit{
     if(!username || !password){
       this.loginerror="Please enter a username and password!";
     }else{
-      const targetUrl = 'http://localhost:8080/auth/login';
-      const body = {username,password};
-      const headers = new HttpHeaders(
-        {
-            'Content-Type': 'application/json'
-        });
-
-      this.http.post(targetUrl,body,{headers:headers}).toPromise()
-      .then(res=>{
-          localStorage.setItem("jwtToken",res['message']);
+      this.authService.login(username,password).subscribe(
+        res=>{
+          localStorage.setItem("jwtToken",res['token']);
           this.router.navigate(['']);
-      })
-      .catch(err=>{
-        this.loginerror=err['error']['message']
-      });
+        },
+        err=>{
+          this.loginerror = "Wrong username or password!";
+        }
+      )
     }
   }
 }

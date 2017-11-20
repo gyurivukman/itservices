@@ -50,10 +50,11 @@ public class AuthenticationController {
         String username = requestParams.get("username");
         String password = requestParams.get("password");
         HashMap<String,String> body = new HashMap();
-        boolean isUserValid = this.authService.validateUserCredentials(username, password);
-        body.put("message", isUserValid?this.authService.generateJWT(username):"Wrong username or password!");
         
-        return ResponseEntity.status(isUserValid?HttpStatus.OK:HttpStatus.FORBIDDEN)
-                                    .body(body);
+        boolean isUserValid = this.authService.validateUserCredentials(username, password);
+        
+        if(isUserValid) body.put("message", this.authService.generateJWT(username));
+        
+        return ResponseEntity.status(isUserValid?HttpStatus.OK:HttpStatus.FORBIDDEN).body(body);
     }
 }
