@@ -1,7 +1,6 @@
 package hu.elte.alkfejl.itservices.repository;
 
 import hu.elte.alkfejl.itservices.model.User;
-import java.util.HashMap;
 import java.util.Map;
 import org.springframework.data.repository.CrudRepository;
 

@@ -1,11 +1,13 @@
 <form>
   <div class="container">
+    <span>{{loginerror}}</span>
+    <br/>
     <label><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="username" required>
+    <input type="text" placeholder="Enter Username" #username>
     <br/>
     <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required>
+    <input type="password" placeholder="Enter Password" #password>
     <br/>
-    <button type="submit">Login</button>
+    <button type="button" (click)="attemptLogin(username.value,password.value)">Login</button>
   </div>
 </form>

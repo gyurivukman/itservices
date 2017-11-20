@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
@@ -52,15 +53,24 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
     }
     
     public User findByUsername(String username){
-        TypedQuery<User> usernameQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.username = :name", User.class).setParameter("name", username);
-        User user = usernameQuery.getSingleResult();
-        return user;
+        try{
+            TypedQuery<User> usernameQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.username = :name", User.class).setParameter("name", username);
+            User user = usernameQuery.getSingleResult();
+            return user;
+        }catch(NoResultException e){
+            return null;
+        }
     }
     
     public User findByEmail(String email){ 
-        TypedQuery<User> emailQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.email = :mail", User.class).setParameter("mail", email);
-        User user = emailQuery.getSingleResult();
-        return user;
+        try{
+            TypedQuery<User> emailQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.email = :mail", User.class).setParameter("mail", email);
+            User user = emailQuery.getSingleResult();        
+            return user;
+        }catch(NoResultException e){
+            return null;
+        }
+        
     }
     
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author gyuri
+ * @author gyuri/simon
  */
 @Service
 public class RegistrationService {

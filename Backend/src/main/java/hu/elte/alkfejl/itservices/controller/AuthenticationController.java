@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
- * @author simon
+ * @author simon/gyuri
  */
 
 @Controller
@@ -27,6 +28,7 @@ public class AuthenticationController {
     @Autowired
     private RegistrationService regService;
     
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/register")
     @ResponseBody
     public ResponseEntity register(@RequestBody Map<String,String> userData) {
@@ -35,22 +37,23 @@ public class AuthenticationController {
         
         if(errors.isEmpty()){
             res = ResponseEntity.status(HttpStatus.OK).build();
-        }
-        else{
+        }else{
             res = ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(errors);
         }
         
         return res;
     }
-    
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/login")
     @ResponseBody
     public ResponseEntity login(@RequestBody Map<String, String> requestParams) {
         String username = requestParams.get("username");
         String password = requestParams.get("password");
+        HashMap<String,String> body = new HashMap();
         boolean isUserValid = this.authService.validateUserCredentials(username, password);
+        body.put("message", isUserValid?this.authService.generateJWT(username):"Wrong username or password!");
         
         return ResponseEntity.status(isUserValid?HttpStatus.OK:HttpStatus.FORBIDDEN)
-                                    .body(isUserValid?this.authService.generateJWT(username):"Wrong username or password!");
+                                    .body(body);
     }
 }
