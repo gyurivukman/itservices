@@ -1,5 +1,6 @@
 package hu.elte.alkfejl.itservices.repository;
 
+import hu.elte.alkfejl.itservices.model.Permission;
 import hu.elte.alkfejl.itservices.model.Role;
 import hu.elte.alkfejl.itservices.model.User;
 import java.util.HashMap;
@@ -22,9 +23,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
     
     @Override
     @Transactional
-    public HashMap<String, String> addUser(Map<String,String> userData) {
-        HashMap<String, String> errors = new HashMap();
-        
+    public void addUser(Map<String,String> userData) {
         User user = new User();
         
         user.setEmail(userData.get("email"));
@@ -34,24 +33,34 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
         user.setSurname(userData.get("surname"));
         user.setUsername(userData.get("username"));
         
-        TypedQuery<User> usernameQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.username = :name", User.class).setParameter("name", userData.get("username"));
-        List<User> usernameResults = usernameQuery.getResultList();
-        if(!usernameResults.isEmpty()) {
-            errors.put("username", "This username is taken!");
+        entityManager.persist(user);
+        entityManager.flush();
+    }
+
+    @Override
+    public boolean hasPermission(String username, String permission) {
+        List<Permission> permissions = findByUsername(username).getRole().getPermissions();
+        boolean hasPermission = false;
+        
+        int i = 0 ;
+        while(i<permissions.size() && !hasPermission){
+            hasPermission = permissions.get(i).getName().equals(permission);
+            ++i;
         }
         
-        TypedQuery<User> emailQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.email = :mail", User.class).setParameter("mail", userData.get("email"));
-        List<User> emailResults = emailQuery.getResultList();
-        if(!emailResults.isEmpty()) {
-            errors.put("email", "This email is already registered!");
-        }
-        
-        if(errors.isEmpty()) {
-            entityManager.persist(user);
-            entityManager.flush();
-        }
-        
-        return errors;
+        return hasPermission;
+    }
+    
+    public User findByUsername(String username){
+        TypedQuery<User> usernameQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.username = :name", User.class).setParameter("name", username);
+        User user = usernameQuery.getSingleResult();
+        return user;
+    }
+    
+    public User findByEmail(String email){ 
+        TypedQuery<User> emailQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.email = :mail", User.class).setParameter("mail", email);
+        User user = emailQuery.getSingleResult();
+        return user;
     }
     
 }

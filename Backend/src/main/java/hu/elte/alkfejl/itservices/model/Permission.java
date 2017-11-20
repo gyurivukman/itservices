@@ -26,6 +26,15 @@ public class Permission extends BaseEntity{
     
     @Column(nullable = false, unique = true)
     private String name;
+    
+    @ManyToMany
+    @JoinTable(name="roles_permissions",
+        joinColumns=@JoinColumn(name="role_id"),
+        inverseJoinColumns=@JoinColumn(name="permission_id ")
+    )
+    private List<Role> roles;   
+}
+
 /*
     private enum PermissionName{
         REQUEST_SERVICE,
@@ -45,9 +54,3 @@ public class Permission extends BaseEntity{
         EDIT_USER_CREDENTIALS
     }
   */  
-    @ManyToMany
-    @JoinTable(name="roles_permissions",
-     joinColumns=@JoinColumn(name="role_id"),
-        inverseJoinColumns=@JoinColumn(name="permission_id "))
-    private List<Role> roles;   
-}
