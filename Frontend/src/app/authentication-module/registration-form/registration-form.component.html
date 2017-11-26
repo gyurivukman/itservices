@@ -11,6 +11,7 @@
 
   <label><b>Repeat Password</b></label>
   <input name="repeatpassword" ngModel type="password" placeholder="Repeat Password" #repeatpassword="ngModel" required>
+  <span *ngIf="!doPasswordsMatch(password.value,repeatpassword.value)">The entered passwords do not match!</span>
   <br/>
 
   <label><b>Employee ID</b></label>

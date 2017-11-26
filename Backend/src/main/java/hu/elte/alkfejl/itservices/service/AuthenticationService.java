@@ -16,7 +16,7 @@ import io.jsonwebtoken.SignatureException;
 
 @Service
 public final class AuthenticationService {
-    private final static String SECRET = "kukken";
+    private final static String SECRET = "ThisSecretIsNotSoSecret";
     
     @Autowired
     private UserRepository userRepository;

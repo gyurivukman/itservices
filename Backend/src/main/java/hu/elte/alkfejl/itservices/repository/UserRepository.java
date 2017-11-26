@@ -11,7 +11,7 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface UserRepository extends CrudRepository<User, Integer>, UserRepositoryCustom {
     
-    public void addUser(Map<String,String> userData) throws ConstraintViolationException;
+    public void addUser(Map<String,String> userData);
     
     public boolean hasPermission(String username, String permission);
     

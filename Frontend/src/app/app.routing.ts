@@ -1,16 +1,19 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BaseLayoutComponent }  from './base-layout/base-layout.component';
-import { LoginComponent }       from './authentication/login/login.component';
-import { AuthService }          from './authentication/authservice/auth.service';
+import { LoginComponent }       from './authentication-module/login/login.component';
+import { AuthService }          from './authentication-module/authservice/auth.service';
+import { AccountViewComponent}  from './account-view-component/account-view-component.component';
+import {HomepageComponent}  from './homepage-component/homepage-component.component';
 
 const routes: Routes = [
-  { path: '',component:BaseLayoutComponent, pathMatch: 'full', canActivate:[AuthService]},
-  { path: 'login',component:LoginComponent,pathMatch: 'full'}
-  /*
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'detail/:id', component: HeroDetailComponent },
-  { path: 'heroes', component: HeroesComponent }*/
+  { path: '',component:BaseLayoutComponent, canActivate:[AuthService], 
+    children:[
+      {path:'',redirectTo:'homepage',pathMatch:'full'},
+      { path: 'account', component:AccountViewComponent,pathMatch:'full'},
+      { path: 'homepage',component:HomepageComponent,pathMatch:'full'},
+    ]},
+  { path: 'login', component:LoginComponent,pathMatch: 'full'}
 ];
 
 @NgModule({
