@@ -43,6 +43,7 @@ public class AuthenticationController {
         
         return res;
     }
+    
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/login")
     @ResponseBody

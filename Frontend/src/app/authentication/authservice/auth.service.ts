@@ -18,9 +18,9 @@ export class AuthService implements CanActivate{
       return false;
     }
 
-  login(username:String,password:String):Observable<Object>{
+  login(userData):Observable<Object>{
     const targetUrl = 'http://localhost:8080/auth/login';
-    const body = {username,password};
+    const body = userData;
     const headers = new HttpHeaders(
       {
           'Content-Type': 'application/json'
@@ -32,5 +32,16 @@ export class AuthService implements CanActivate{
   logout(){
     localStorage.removeItem("jwtToken");
     this.router.navigate(['login']);
+  }
+
+  register(userData):Observable<Object>{
+    const targetUrl = 'http://localhost:8080/auth/register';
+    const body = userData;
+    const headers = new HttpHeaders(
+      {
+          'Content-Type': 'application/json'
+      });
+
+    return this.http.post(targetUrl,body,{headers:headers});
   }
 }

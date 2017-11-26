@@ -1,13 +1,16 @@
-<form>
-  <div class="container">
+<form name="loginForm" #f="ngForm" (ngSubmit)="attemptLogin(f)">
     <span>{{loginerror}}</span>
     <br/>
     <label><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" #username>
+    <input name="username" type="text" ngModel placeholder="Enter Username" #username="ngModel" required>
     <br/>
     <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" #password>
+    <input name="password" type="password" ngModel placeholder="Enter Password" #password="ngModel" required>
     <br/>
-    <button type="button" (click)="attemptLogin(username.value,password.value)">Login</button>
-  </div>
+    <button type="submit" [disabled]="!f.valid">Login</button>
+    <button type="button" (click)="showHideRegistrationForm()">Registration</button>
 </form>
+
+<div *ngIf="registrationFormToggle">
+    <registration-form></registration-form>
+</div>

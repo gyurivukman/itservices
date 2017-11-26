@@ -1,9 +1,7 @@
 package hu.elte.alkfejl.itservices.repository;
 
 import hu.elte.alkfejl.itservices.model.Permission;
-import hu.elte.alkfejl.itservices.model.Role;
 import hu.elte.alkfejl.itservices.model.User;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;

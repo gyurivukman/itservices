@@ -1,6 +1,8 @@
 import { Component, OnInit }  from '@angular/core';
 import { Router } from '@angular/router';
 import {AuthService} from '../authservice/auth.service'
+import {NgForm} from '@angular/forms';
+import {RegistrationFormComponent} from '../registration-form/registration-form.component';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +11,7 @@ import {AuthService} from '../authservice/auth.service'
 })
 export class LoginComponent implements OnInit{
   private loginerror:String;
+  private registrationFormToggle:boolean;
 
   constructor(private router:Router,private authService:AuthService) {}
 
@@ -16,13 +19,11 @@ export class LoginComponent implements OnInit{
     if(localStorage.getItem("jwtToken")){ //check if its valid, dont just wether it exists or not.
       this.router.navigate(['']);
     }
+    this.registrationFormToggle = false;
   }
 
-  attemptLogin(username:String, password:String){
-    if(!username || !password){
-      this.loginerror="Please enter a username and password!";
-    }else{
-      this.authService.login(username,password).subscribe(
+  attemptLogin(loginForm:NgForm){
+      this.authService.login(loginForm.value).subscribe(
         res=>{
           localStorage.setItem("jwtToken",res['token']);
           this.router.navigate(['']);
@@ -31,6 +32,9 @@ export class LoginComponent implements OnInit{
           this.loginerror = "Wrong username or password!";
         }
       )
-    }
+  }
+
+  showHideRegistrationForm(){
+    this.registrationFormToggle = !this.registrationFormToggle;
   }
 }
