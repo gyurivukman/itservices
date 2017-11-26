@@ -9,7 +9,7 @@ import {AuthService} from '../authservice/auth.service';
   styleUrls: ['./registration-form.component.css']
 })
 export class RegistrationFormComponent implements OnInit {
-  private registrationError;
+  registrationErrors={};
 
   constructor(private authService:AuthService) {}
 
@@ -19,8 +19,7 @@ export class RegistrationFormComponent implements OnInit {
     this.authService.register(regForm.value).subscribe(
       res=>{},
       err=>{
-        this.registrationError=err.error;
-        console.log(this.registrationError);
+        this.registrationErrors=err.error;
       }
     )
   }
