@@ -1,3 +1,28 @@
-<p>
-  account-view-component works!
-</p>
+<div id="form-container">
+  <form id="accountform" class="center-login-element" name="accountForm">
+  <label><b>Change Username</b></label>
+  <input name="username" ngModel type="text" value="{{account.username}}">
+  <br/>
+
+  <label><b>Change Password</b></label>
+  <input name="password" ngModel type="password" placeholder="Enter Password">
+  <br/>
+
+  <label><b>Forename</b></label>
+  <input name="forename" ngModel type="text" value="{{account.forename}}" #forename="ngModel" required>
+  <br/>
+
+  <label><b>Surname</b></label>
+  <input name="surname" ngModel type="text" value="{{account.surname}}" #surname="ngModel" required>
+  <br/> 
+  
+  <hr>
+
+  <label><b>Current password</b></label>
+  <input name="repeatpassword" ngModel type="password" placeholder="Current Password" required>
+  <br/>
+
+  <button type="submit">Confirm</button>
+</form>
+</div>
+
