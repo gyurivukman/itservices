@@ -1,15 +1,33 @@
-<form name="loginForm" #f="ngForm" (ngSubmit)="attemptLogin(f)">
-    <span>{{loginerror}}</span>
-    <br/>
-    <label><b>Username</b></label>
-    <input name="username" type="text" ngModel placeholder="Enter Username" #username="ngModel" required>
-    <br/>
-    <label><b>Password</b></label>
-    <input name="password" type="password" ngModel placeholder="Enter Password" #password="ngModel" required>
-    <br/>
-    <button type="submit" [disabled]="!f.valid">Login</button>
-    <button type="button" (click)="showHideRegistrationForm()">Registration</button>
-</form>
+<div id="form-container" class="center-login-element">
+    <form id = "loginform" name="loginForm" #f="ngForm" (ngSubmit)="attemptLogin(f)">
+
+        <div id="company-text-container" class="mat-typography">
+            <span id = "company-text" class="mat-headline">IT Services Portal</span>
+        </div>
+
+        <div id = "login-error-container" class="mat-typography center-login-element">
+            <mat-icon *ngIf="loginerror" svgIcon="warning-triangle"></mat-icon><span *ngIf="loginerror" id="login-error-text" class="mat-body-2">{{loginerror}}</span>
+        </div>
+
+        <div id="input-fields-container" class="center-login-element">
+            <mat-form-field class="mat-form-field">
+                <input type="text" matInput placeholder="Username" name="username" ngModel #username="ngModel" required>         
+            </mat-form-field>
+            
+            <br/>
+
+            <mat-form-field>
+                <input type="password" matInput placeholder="Password" name="password" ngModel #password="ngModel" required>         
+            </mat-form-field>
+        </div>  
+
+        <div id="login-button-container" class="center-login-element">        
+            <button mat-raised-button color="primary" type="submit" label="Login" [disabled]="!f.valid">Login</button>
+            <button mat-raised-button color="primary" type="button" label="Register" (click)="showHideRegistrationForm()">Sign up</button>
+        </div>
+
+    </form>
+</div>
 
 <div *ngIf="registrationFormToggle">
     <registration-form></registration-form>
