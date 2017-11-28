@@ -1,28 +1,53 @@
-<div id="form-container">
-  <form id="accountform" class="center-login-element" name="accountForm">
-  <label><b>Change Username</b></label>
-  <input name="username" ngModel type="text" value="{{account.username}}">
-  <br/>
+<div id="form-container" class="center-confirm-element">
+  <form id="accountform" name="accountForm">
+    <div id="input-fields-container" class="center-confirm-element">
+      <mat-form-field class="mat-form-field">
+        <label>
+          <b>Change Username</b>
+        </label>
 
-  <label><b>Change Password</b></label>
-  <input name="password" ngModel type="password" placeholder="Enter Password">
-  <br/>
+        <input name="username" matInput type="text" value="memeboy123">
+      </mat-form-field>
+      <br/>
 
-  <label><b>Forename</b></label>
-  <input name="forename" ngModel type="text" value="{{account.forename}}" #forename="ngModel" required>
-  <br/>
+      <mat-form-field class="mat-form-field">
+        <label>
+          <b>Change Password</b>
+        </label>
+        <input name="password" matInput type="password" placeholder="Enter Password">
+      </mat-form-field>
+      <br/>
+      <mat-form-field class="mat-form-field">
+        <label>
+          <b>Forename</b>
+        </label>
+        <input name="forename" matInput type="text" value="Sándor" required>
+      </mat-form-field>
+      <br/>
+      <mat-form-field class="mat-form-field">
+        <label>
+          <b>Surname</b>
+        </label>
+        <input name="surname" matInput type="text" value="Kovács" required>
+      </mat-form-field>
+      <br/>
 
-  <label><b>Surname</b></label>
-  <input name="surname" ngModel type="text" value="{{account.surname}}" #surname="ngModel" required>
-  <br/> 
-  
-  <hr>
+      <mat-form-field class="mat-form-field">
+        <label>
+          <b>Current password</b>
+        </label>
+        <input name="currentpassword" matInput type="password" placeholder="Current Password" required>
+      </mat-form-field>
+      <br/>
 
-  <label><b>Current password</b></label>
-  <input name="repeatpassword" ngModel type="password" placeholder="Current Password" required>
-  <br/>
+      <div id="confirm-error-container" class="mat-typography center-confirm-element">
+        <mat-icon *ngIf="loginerror" svgIcon="warning-triangle"></mat-icon>
+        <span *ngIf="loginerror" id="login-error-text" class="mat-body-2">{{loginerror}}</span>
+      </div>
 
-  <button type="submit">Confirm</button>
-</form>
+      <div id="confirm-button-container" class="center-confirm-element">
+        <button mat-raised-button color="primary" type="submit" label="Confirm">Confirm</button>
+      </div>
+    </div>
+  </form>
 </div>
-
