@@ -1,10 +1,10 @@
 import { Component, OnInit, SecurityContext}  from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../authservice/auth.service'
+import { AuthService } from '../authservice/auth.service';
 import { NgForm } from '@angular/forms';
 
-import {MatIconRegistry} from '@angular/material/icon'
-import { DomSanitizer } from '@angular/platform-browser'
+import {MatIconRegistry} from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',

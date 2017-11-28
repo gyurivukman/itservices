@@ -71,4 +71,14 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
         
     }
     
+    public User findByEmployeeId(String employeeId) {
+        try{
+            TypedQuery<User> emailQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.employeeid = :employeeid", User.class).setParameter("employeeid", employeeId);
+            User user = emailQuery.getSingleResult();        
+            return user;
+        }catch(NoResultException e){
+            return null;
+        }
+    }
+    
 }

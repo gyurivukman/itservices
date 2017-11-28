@@ -9,6 +9,7 @@ import { SignupComponent } from './signup/signup.component';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTooltipModule} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    MatTooltipModule,
   ],
   providers:[AuthService],
   exports: [

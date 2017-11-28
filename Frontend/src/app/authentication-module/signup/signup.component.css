@@ -12,6 +12,15 @@
     left: 50%;
 }
 
+#warning-icon {
+    margin-right: 7px;
+}
+
+#information-icon {
+    margin-right: 7px;
+    height: 20px;
+}
+
 #signup-header{
     border-bottom:1px solid #4A148C;
     width:85%;
@@ -38,8 +47,8 @@
     color:red;
 }
 .mat-form-field{
-    width:100%;
-    max-width:100%;
+    width:88%;
+    max-width:88%;
 }
 
 #signup-buttons-container{

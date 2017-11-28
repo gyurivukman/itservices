@@ -11,12 +11,14 @@
           <input matInput name="username" ngModel type="text" placeholder="Enter Username" required>
           <mat-hint align="start" *ngIf="registrationErrors.username" class="form-field-errortext">{{registrationErrors.username}}</mat-hint>
       </mat-form-field>
-      
+      <mat-icon matTooltip="Username must be 5-13 characters long, and can only contain lower and uppercase letters" matTooltipPosition="left" id="information-icon" svgIcon="information"></mat-icon>
+
       <mat-form-field class="mat-form-field">
           <input matInput name="password" ngModel type="password" placeholder="Enter Password" #password="ngModel" required>
           <mat-hint align="start" *ngIf="registrationErrors.password" class="form-field-errortext">{{registrationErrors.password}}</mat-hint>
       </mat-form-field>
-  
+      <mat-icon matTooltip="Password must be 8-13 characters long, have 1 uppercase letter, 1 lowercase letter and 1 number" matTooltipPosition="left" id="information-icon" svgIcon="information"></mat-icon>
+      
       <mat-form-field class="mat-form-field">
         <input matInput name="repeatpassword" ngModel type="password" placeholder="Repeat Password" #repeatpassword="ngModel" required>
         <mat-hint align="start"*ngIf="!doPasswordsMatch(password.value,repeatpassword.value)" class="form-field-errortext">Passwords don't match!</mat-hint>
@@ -27,13 +29,14 @@
         <mat-hint align="start"*ngIf="registrationErrors.employeeid" class="form-field-errortext">{{registrationErrors.employeeid}}</mat-hint>
         <mat-hint align="end">{{employeeid.value?.length || 0}}/8</mat-hint>
       </mat-form-field>
-  
+      <mat-icon matTooltip="Employee ID must be an 8 character long number" matTooltipPosition="left" id="information-icon" svgIcon="information"></mat-icon>
+      
       <mat-form-field class="mat-form-field">
         <input matInput name="email" ngModel type="text" placeholder="Enter your email address!" #email="ngModel" required>
         <span matSuffix id="email-suffix">@sample-text.com</span>
         <mat-hint align="start"*ngIf="registrationErrors.email" class="form-field-errortext">{{registrationErrors.email}}</mat-hint>
       </mat-form-field>
-  
+      
       <mat-form-field class="mat-form-field">
         <input matInput name="forename" ngModel type="text" placeholder="Enter your forename" #forename="ngModel" required>
         <mat-hint *ngIf="registrationErrors.username" class="form-field-errortext">{{registrationErrors.forename}}</mat-hint>

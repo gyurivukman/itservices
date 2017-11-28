@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {AuthService} from '../authservice/auth.service';
+import {MatIconRegistry} from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'registration-form',
@@ -10,11 +12,15 @@ import {AuthService} from '../authservice/auth.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+  position = 'before';
   private registrationErrors={};
 
-  constructor(private authService:AuthService,private router:Router) {}
+  constructor(private authService:AuthService,private router:Router,private iconRegistry:MatIconRegistry,private sanitizer:DomSanitizer) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.iconRegistry.addSvgIcon('warning-triangle',this.sanitizer.bypassSecurityTrustResourceUrl('./assets/icons/warning.svg'));
+    this.iconRegistry.addSvgIcon('information',this.sanitizer.bypassSecurityTrustResourceUrl('./assets/icons/information.svg'));
+  }
 
   attemptUserRegistration(regForm:NgForm){
     regForm.value.email+='@sample-text.com';
