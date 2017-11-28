@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app.routing';
 import { HeaderComponent } from './header/header.component';
 import { HomepageComponent } from './homepage-component/homepage-component.component';
 import { AccountViewComponent} from './account-view-component/account-view-component.component';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -27,7 +28,9 @@ import { AccountViewComponent} from './account-view-component/account-view-compo
     BrowserAnimationsModule,
     HttpClientModule,
     AuthenticationModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -19,7 +19,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
   ],
   providers:[AuthService],
   exports: [
