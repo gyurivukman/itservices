@@ -1,5 +1,11 @@
 <div id="form-container" class="center-confirm-element">
   <form id="accountform" name="accountForm">
+
+    <div id="change-header" class="mat-typography center-login-element">
+      <div id="change-text-decorator">&nbsp;</div>
+      <span id="change-text" class="mat-display-1">Change account information</span>
+    </div>
+
     <div id="input-fields-container" class="center-confirm-element">
       <mat-form-field class="mat-form-field">
         <label>
@@ -11,31 +17,25 @@
       <br/>
 
       <mat-form-field class="mat-form-field">
-        <label>
-          <b>Change Password</b>
-        </label>
-        <input name="password" matInput type="password" placeholder="Enter Password">
+        <input name="password" matInput type="password" placeholder="New password">
       </mat-form-field>
       <br/>
       <mat-form-field class="mat-form-field">
         <label>
           <b>Forename</b>
         </label>
-        <input name="forename" matInput type="text" value="Sándor" required>
+        <input name="forename" matInput type="text" value="Place" required>
       </mat-form-field>
       <br/>
       <mat-form-field class="mat-form-field">
         <label>
           <b>Surname</b>
         </label>
-        <input name="surname" matInput type="text" value="Kovács" required>
+        <input name="surname" matInput type="text" value="Holder" required>
       </mat-form-field>
       <br/>
 
       <mat-form-field class="mat-form-field">
-        <label>
-          <b>Current password</b>
-        </label>
         <input name="currentpassword" matInput type="password" placeholder="Current Password" required>
       </mat-form-field>
       <br/>
