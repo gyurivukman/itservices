@@ -1,0 +1,52 @@
+<div id="form-container">
+  <form name="registrationForm" #f="ngForm" (ngSubmit)="attemptUserRegistration(f)">
+
+    <div id="signup-header" class="mat-typography center-login-element">
+        <div id="signup-text-decorator">&nbsp;</div>
+        <span id = "signup-text" class="mat-display-1">Sign up!</span>
+    </div>
+
+    <div id="input-fields-container" class="center-login-element">
+      <mat-form-field class="mat-form-field">
+          <input matInput name="username" ngModel type="text" placeholder="Enter Username" required>
+          <mat-hint align="start" *ngIf="registrationErrors.username" class="form-field-errortext">{{registrationErrors.username}}</mat-hint>
+      </mat-form-field>
+      
+      <mat-form-field class="mat-form-field">
+          <input matInput name="password" ngModel type="password" placeholder="Enter Password" #password="ngModel" required>
+          <mat-hint align="start" *ngIf="registrationErrors.password" class="form-field-errortext">{{registrationErrors.password}}</mat-hint>
+      </mat-form-field>
+  
+      <mat-form-field class="mat-form-field">
+        <input matInput name="repeatpassword" ngModel type="password" placeholder="Repeat Password" #repeatpassword="ngModel" required>
+        <mat-hint align="start"*ngIf="!doPasswordsMatch(password.value,repeatpassword.value)" class="form-field-errortext">Passwords don't match!</mat-hint>
+      </mat-form-field>
+  
+      <mat-form-field class="mat-form-field">
+        <input matInput maxlength=8 name="employeeid" ngModel type="text" placeholder="Enter your employee ID!" #employeeid="ngModel" required>
+        <mat-hint align="start"*ngIf="registrationErrors.employeeid" class="form-field-errortext">{{registrationErrors.employeeid}}</mat-hint>
+        <mat-hint align="end">{{employeeid.value?.length || 0}}/8</mat-hint>
+      </mat-form-field>
+  
+      <mat-form-field class="mat-form-field">
+        <input matInput name="email" ngModel type="text" placeholder="Enter your email address!" #email="ngModel" required>
+        <span matSuffix id="email-suffix">@sample-text.com</span>
+        <mat-hint align="start"*ngIf="registrationErrors.email" class="form-field-errortext">{{registrationErrors.email}}</mat-hint>
+      </mat-form-field>
+  
+      <mat-form-field class="mat-form-field">
+        <input matInput name="forename" ngModel type="text" placeholder="Enter your forename" #forename="ngModel" required>
+        <mat-hint *ngIf="registrationErrors.username" class="form-field-errortext">{{registrationErrors.forename}}</mat-hint>
+      </mat-form-field>
+        
+      <mat-form-field class="mat-form-field">
+        <input matInput name="surname" ngModel type="text" placeholder="Enter your surname" #surname="ngModel" required>
+        <mat-hint *ngIf="registrationErrors.username" class="form-field-errortext">{{registrationErrors.surname}}</mat-hint>
+      </mat-form-field>
+    </div>
+    <div id="signup-buttons-container" class="center-login-element">
+      <button mat-raised-button color="primary" type="button" label="Back" (click)="goBackToLogin()">Back</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!f.valid || !doPasswordsMatch(password.value,repeatpassword.value)">Register!</button>
+    </div>
+  </form>
+</div>

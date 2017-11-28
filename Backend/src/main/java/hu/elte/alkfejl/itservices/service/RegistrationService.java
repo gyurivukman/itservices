@@ -54,7 +54,7 @@ public class RegistrationService {
     }
     
     private boolean validateEmailFormat(String email){
-        return email.matches("[a-z]+@[a-z]+\\.[a-z]{3}");
+        return email.matches("[a-z\\-\\_0-9\\.]+@[a-z\\-]+\\.[a-z]{3}");
     }
     
     private boolean validateEmployeeId(String employeeid){

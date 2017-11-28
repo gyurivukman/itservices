@@ -14,8 +14,6 @@
                 <input type="text" matInput placeholder="Username" name="username" ngModel #username="ngModel" required>         
             </mat-form-field>
             
-            <br/>
-
             <mat-form-field>
                 <input type="password" matInput placeholder="Password" name="password" ngModel #password="ngModel" required>         
             </mat-form-field>
@@ -23,12 +21,8 @@
 
         <div id="login-button-container" class="center-login-element">        
             <button mat-raised-button color="primary" type="submit" label="Login" [disabled]="!f.valid">Login</button>
-            <button mat-raised-button color="primary" type="button" label="Register" (click)="showHideRegistrationForm()">Sign up</button>
+            <button mat-raised-button color="primary" type="button" label="Register" (click)="switchRouteToSignUp()">Sign up</button>
         </div>
 
     </form>
-</div>
-
-<div *ngIf="registrationFormToggle">
-    <registration-form></registration-form>
 </div>
