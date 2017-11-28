@@ -1,0 +1,21 @@
+.wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#site-header {
+    height: 100px;
+    width: 100%;
+}
+#site-content {
+    width: 100%;
+    min-height: 500px;
+    flex: 1;
+}
+
+#site-footer {
+    height: 100px;
+    width: 100%;
+}
+
