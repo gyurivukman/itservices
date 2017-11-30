@@ -1,0 +1,63 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:700);
+#header-container{
+    position:absolute;
+    background:white;
+    height:100%;
+    min-height:100%;
+    width:100%;
+    display:flex;
+}
+
+#header-left-container{
+    width:45%;
+    max-width:45%;
+}
+
+#big-header-text{
+    color:white;
+    font-size:4em;
+    font-family: Raleway;
+}
+#header-decorator-logo{
+    background:linear-gradient(to right,#4A148C,#6735a5);
+    /*background:linear-gradient(-40deg,red,green);*/
+    width:100%;
+    max-width:100%;
+    height:80%;
+    text-align: center;
+}
+.teszt{
+    height:39px !important;
+}
+
+#navbar-container{
+    width:100%;
+    max-width:100%;
+}
+
+#header-right-container{
+    width:55%;
+    max-width:55%;
+    background:white;
+    display:flex;
+}
+
+#header-right-mask{
+    background:linear-gradient(to right,#6735a5,#734aa5);
+    width:50%;
+    clip-path: polygon(0% 0%,85% 0%,100% 50%,85% 100%,0% 100%);
+}
+.header-decorator-arrow{
+    background:#4A148C;;
+    width:25%;
+    max-width:25%;
+    clip-path: polygon(0% 0%,70% 0%, 100% 50%, 70% 100%, 0% 100%, 30% 50%);
+}
+
+#header-decorator-arrow-first{
+    background:linear-gradient(to right,#734aa5,#8963b7);
+}
+
+#header-decorator-arrow-second{
+    background:linear-gradient(to right,#8963b7,#9d7fc1);
+}

@@ -1,3 +1,30 @@
-<button (click) = "logout()">logout</button>
-<a [routerLink]="['/homepage']">Homepage</a>
-<a [routerLink]="['/account']">Account</a>
+<div id="header-container">
+
+    <div id="header-left-container">
+
+        <div id="header-decorator-logo">
+            <span id="big-header-text">IT Services Portal</span>
+        </div>
+
+        <div id="navbar-container">
+            <nav mat-tab-nav-bar [backgroundColor]="tabNavBackground">
+                <a class="teszt" mat-tab-link
+                    *ngFor="let tabLink of tabLinks; let i = index"
+                    [routerLink]="tabLink.link"
+                    routerLinkActive #rla="routerLinkActive"
+                    [active]="rla.isActive">
+                    {{tabLink.label}}
+                </a>
+            </nav>
+        </div>
+
+    </div>
+
+    <div id="header-right-container">
+        <div id="header-right-mask">&nbsp;</div>
+        <div class="header-decorator-arrow" id="header-decorator-arrow-first">&nbsp;</div>
+        <div class="header-decorator-arrow" id="header-decorator-arrow-second">&nbsp;</div>
+    </div>
+
+</div>
+
