@@ -73,12 +73,51 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
     
     public User findByEmployeeId(String employeeId) {
         try{
-            TypedQuery<User> emailQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.employeeid = :employeeid", User.class).setParameter("employeeid", employeeId);
-            User user = emailQuery.getSingleResult();        
+            TypedQuery<User> employeeIdQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.employeeid = :employeeid", User.class).setParameter("employeeid", employeeId);
+            User user = employeeIdQuery.getSingleResult();        
             return user;
         }catch(NoResultException e){
             return null;
         }
     }
     
+    public void modifyUsername(User user, String newUsername) {
+        try {
+            entityManager.createQuery("UPDATE users SET username = \'" + newUsername + "\' WHERE email = :email", User.class)
+                .setParameter("email", user.getEmail())
+                .executeUpdate();
+        } catch(Exception e){
+            return;
+        } 
+    }
+    
+    public void modifyPassword(User user, String newPassword) {
+        try {
+            entityManager.createQuery("UPDATE users SET password = \'" + newPassword + "\' WHERE email = :email", User.class)
+                .setParameter("email", user.getEmail())
+                .executeUpdate(); 
+        } catch(Exception e){
+            return;
+        }
+    }
+    
+    public void modifyForename(User user, String newForename) {
+        try {
+            entityManager.createQuery("UPDATE users SET forename = \'" + newForename + "\' WHERE email = :email", User.class)
+                .setParameter("email", user.getEmail())
+                .executeUpdate();
+        } catch(Exception e){
+            return;
+        }     
+    }
+    
+    public void modifySurname(User user, String newSurname) {
+        try {
+            entityManager.createQuery("UPDATE users SET surname = \'" + newSurname + "\' WHERE email = :email", User.class)
+                .setParameter("email", user.getEmail())
+                .executeUpdate();
+        } catch(Exception e){
+            return;
+        }     
+    }
 }

@@ -21,4 +21,12 @@ public interface UserRepository extends CrudRepository<User, Integer>, UserRepos
     
     public User findByEmployeeId(String employeeId);
     
+    public void modifyUsername(User user, String newUsername);
+    
+    public void modifyPassword(User user, String newPassword);
+    
+    public void modifyForename(User user, String newForename);
+    
+    public void modifySurname(User user, String newSurname);
+    
 }
