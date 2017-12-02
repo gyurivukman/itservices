@@ -9,6 +9,7 @@
 }
 
 #header-left-container{
+    border-right:1px solid #6735a5;
     width:45%;
     max-width:45%;
 }
@@ -20,19 +21,19 @@
 }
 #header-decorator-logo{
     background:linear-gradient(to right,#4A148C,#6735a5);
-    /*background:linear-gradient(-40deg,red,green);*/
     width:100%;
     max-width:100%;
     height:80%;
     text-align: center;
 }
-.teszt{
+.nav-tab-menu-element{
     height:39px !important;
 }
-
 #navbar-container{
     width:100%;
     max-width:100%;
+    display:flex;
+    justify-content: space-between;
 }
 
 #header-right-container{

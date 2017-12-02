@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {NgForm} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
-import {AuthService} from '../authservice/auth.service';
-import {MatIconRegistry} from '@angular/material/icon';
+import { NgForm } from '@angular/forms';
+import { AuthService } from '../authservice/auth.service';
+import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({

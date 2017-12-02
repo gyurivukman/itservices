@@ -1,4 +1,7 @@
 import { Component, OnInit,ViewEncapsulation } from '@angular/core';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+
 import { AuthService } from '../authentication-module/authservice/auth.service';
 
 @Component({
@@ -12,9 +15,11 @@ export class HeaderComponent implements OnInit {
     {label: 'Home', link: '/homepage'},
     {label: 'Account', link: '/account'},
     {label: 'Requests', link: '/requests'},
-    {label: 'Admin', link: ''},
+    {label: 'Admin', link: '/requests'},
   ];
-  constructor(private authService:AuthService) {}
+  constructor(private authService:AuthService,private iconRegistry:MatIconRegistry,private sanitizer:DomSanitizer) {
+    this.iconRegistry.addSvgIcon('logout',this.sanitizer.bypassSecurityTrustResourceUrl('./assets/icons/logout.svg'));
+  }
 
   ngOnInit() {
   }

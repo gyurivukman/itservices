@@ -7,8 +7,8 @@
         </div>
 
         <div id="navbar-container">
-            <nav mat-tab-nav-bar [backgroundColor]="tabNavBackground">
-                <a class="teszt" mat-tab-link
+            <nav id = "navbar" mat-tab-nav-bar [backgroundColor]="tabNavBackground">
+                <a class="nav-tab-menu-element" mat-tab-link
                     *ngFor="let tabLink of tabLinks; let i = index"
                     [routerLink]="tabLink.link"
                     routerLinkActive #rla="routerLinkActive"
@@ -16,6 +16,7 @@
                     {{tabLink.label}}
                 </a>
             </nav>
+            <button mat-button id="logout-button" color="primary" (click)="logout()"><mat-icon id="logout-icon" svgIcon="logout"></mat-icon></button>
         </div>
 
     </div>
