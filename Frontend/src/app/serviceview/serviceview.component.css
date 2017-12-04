@@ -1,0 +1,12 @@
+#navbar-container{
+    display:flex;
+}
+#sajt{
+    width:35%;
+    max-width:35%;
+}
+#navbar-decorator{
+    background:linear-gradient(to right,#734aa5,#9d7fc1);
+    width:65%;
+    max-width:65%;
+}

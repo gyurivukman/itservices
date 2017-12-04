@@ -12,13 +12,19 @@ import { HeaderComponent } from './header/header.component';
 import { HomepageComponent } from './homepage-component/homepage-component.component';
 import { AccountViewComponent} from './account-view-component/account-view-component.component';
 
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatListModule } from '@angular/material/list';
+
 import { RequestsComponent } from './requests/requests.component';
+import { ServiceviewComponent } from './serviceview/serviceview.component';
+import { ServiceviewFormComponent } from './serviceview-form/serviceview-form.component';
+import { ServicedescriptionComponent } from './servicedescription/servicedescription.component';
 
-
+import {ServiceData_Service} from './serviceData-service/service-data.service';
 
 @NgModule({
   declarations: [
@@ -28,20 +34,25 @@ import { RequestsComponent } from './requests/requests.component';
     HomepageComponent,
     AccountViewComponent,
     RequestsComponent,
+    ServiceviewComponent,
+    ServiceviewFormComponent,
+    ServicedescriptionComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AuthenticationModule,
+    MatCheckboxModule,
     AppRoutingModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatTabsModule
+    MatTabsModule,
+    MatListModule
   ],
-  providers: [],
+  providers: [ServiceData_Service],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

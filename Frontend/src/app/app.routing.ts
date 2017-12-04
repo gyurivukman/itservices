@@ -7,13 +7,24 @@ import { AccountViewComponent}  from './account-view-component/account-view-comp
 import { HomepageComponent }    from './homepage-component/homepage-component.component';
 import { SignupComponent }      from './authentication-module/signup/signup.component';
 import { RequestsComponent }    from './requests/requests.component';
+import { ServiceviewComponent } from './serviceview/serviceview.component';
+import { ServiceviewFormComponent } from './serviceview-form/serviceview-form.component';
+import { ServicedescriptionComponent } from './servicedescription/servicedescription.component';
 
 const routes: Routes = [
   { path: '',component:BaseLayoutComponent, canActivate:[AuthService], 
     children:[
-      {path:'',redirectTo:'homepage',pathMatch:'full'},
-      { path: 'account', component:AccountViewComponent,pathMatch:'full'},
-      { path: 'homepage',component:HomepageComponent,pathMatch:'full'},
+      { path:'',redirectTo:'homepage/1',pathMatch:'full'},
+      { path:'homepage',redirectTo:'homepage/1',pathMatch:'full'},
+      { path:'account', component:AccountViewComponent,pathMatch:'full'},
+      { 
+        path: 'homepage/:serviceid',component:HomepageComponent,
+        children:[
+          { path: '', redirectTo:'description',pathMatch:'full'},
+          { path: 'request', component:ServiceviewFormComponent,pathMatch:'full'},
+          { path: 'description', component:ServicedescriptionComponent,pathMatch:'full'},
+        ]
+      },
       { path: 'requests',component:RequestsComponent,pathMatch:'full'},
     ]},
   { path: 'login', component: LoginComponent,pathMatch: 'full'},
@@ -26,3 +37,15 @@ const routes: Routes = [
   declarations: [],
 })
 export class AppRoutingModule {}
+/*
+        children:[
+          {path:'',redirectTo:'1/description',pathMatch:'full'},
+          { path: ':serviceid',
+            component: ServiceviewComponent,
+            children:[
+              {path:'',redirectTo:'description',pathMatch:'full'},
+              {path:'description',component:ServicedescriptionComponent,pathMatch:'full'},
+              {path:'request',component:ServiceviewFormComponent,pathMatch:'full'}
+            ], 
+          }
+        ]*/
