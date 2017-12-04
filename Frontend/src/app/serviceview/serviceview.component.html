@@ -1,14 +1,14 @@
 <div id="navbar-container">
-    <div id="sajt">
-    <nav id = "navbar" mat-tab-nav-bar [backgroundColor]="tabNavBackground">
-        <a class="nav-tab-menu-element" mat-tab-link
-            *ngFor="let tabLink of tabLinks; let i = index"
-            [routerLink]="tabLink.link"
-            routerLinkActive #rla="routerLinkActive"
-            [active]="rla.isActive">
-            {{tabLink.label}}
-        </a>
-    </nav>
+    <div id="navbar">
+        <nav mat-tab-nav-bar [backgroundColor]="tabNavBackground">
+            <a class="nav-tab-menu-element" mat-tab-link
+                *ngFor="let tabLink of tabLinks; let i = index"
+                [routerLink]="tabLink.link"
+                routerLinkActive #rla="routerLinkActive"
+                [active]="rla.isActive">
+                {{tabLink.label}}
+            </a>
+        </nav>
     </div>
     <div id="navbar-decorator">&nbsp;</div>
 </div>
