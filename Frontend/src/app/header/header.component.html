@@ -1,24 +1,25 @@
 <div id="header-container">
 
     <div id="header-left-container">
-
-        <div id="header-decorator-logo">
-            <span id="big-header-text">IT Services Portal</span>
+        <div id="header-left-container-logo-and-navbar-container">
+            <div id="header-decorator-logo">
+                <span id="big-header-text">IT Services Portal</span>
+            </div>
+            
+            <div id="navbar-container">
+                <nav id = "navbar" mat-tab-nav-bar [backgroundColor]="tabNavBackground">
+                    <a class="nav-tab-menu-element" mat-tab-link
+                        *ngFor="let tabLink of tabLinks; let i = index"
+                        [routerLink]="tabLink.link"
+                        routerLinkActive #rla="routerLinkActive"
+                        [active]="rla.isActive">
+                        {{tabLink.label}}
+                    </a>
+                </nav>
+                <button mat-button id="logout-button" color="primary" (click)="logout()"><mat-icon id="logout-icon" svgIcon="logout"></mat-icon></button>
+            </div>
         </div>
-
-        <div id="navbar-container">
-            <nav id = "navbar" mat-tab-nav-bar [backgroundColor]="tabNavBackground">
-                <a class="nav-tab-menu-element" mat-tab-link
-                    *ngFor="let tabLink of tabLinks; let i = index"
-                    [routerLink]="tabLink.link"
-                    routerLinkActive #rla="routerLinkActive"
-                    [active]="rla.isActive">
-                    {{tabLink.label}}
-                </a>
-            </nav>
-            <button mat-button id="logout-button" color="primary" (click)="logout()"><mat-icon id="logout-icon" svgIcon="logout"></mat-icon></button>
-        </div>
-
+        <div id="header-left-container-decorator-element">&nbsp;</div>
     </div>
 
     <div id="header-right-container">

@@ -18,7 +18,7 @@ export class HomepageComponent implements OnInit {
 
   selectService(index){
     this.serviceData_service.setSelectedService(index);
-    this.router.navigate(['homepage',index+1,this.activatedRoute.snapshot.children[0].url[0].path);
+    this.router.navigate(['homepage',index+1,this.activatedRoute.snapshot.children[0].url[0].path]);
   }
 
   ngOnInit() {
