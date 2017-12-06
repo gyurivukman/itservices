@@ -1,6 +1,7 @@
 package hu.elte.alkfejl.itservices.controller;
 
 import hu.elte.alkfejl.itservices.service.AuthenticationService;
+import hu.elte.alkfejl.itservices.service.ModifyCredentialsService;
 import hu.elte.alkfejl.itservices.service.RegistrationService;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,6 +28,9 @@ public class AuthenticationController {
     
     @Autowired
     private RegistrationService regService;
+    
+    @Autowired
+    private ModifyCredentialsService modifyService;
     
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/register")
@@ -57,5 +61,21 @@ public class AuthenticationController {
         if(isUserValid) body.put("message", this.authService.generateJWT(username));
         
         return ResponseEntity.status(isUserValid?HttpStatus.OK:HttpStatus.FORBIDDEN).body(body);
+    }
+    
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/modify")
+    @ResponseBody
+    public ResponseEntity modify(@RequestBody Map<String,String> userData) {
+        ResponseEntity res;
+        HashMap<String,String> errors = modifyService.attemptUserModification(userData);
+        
+        if(errors.isEmpty()){
+            res = ResponseEntity.status(HttpStatus.OK).build();
+        }else{
+            res = ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(errors);
+        }
+        
+        return res;
     }
 }

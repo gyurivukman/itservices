@@ -29,38 +29,19 @@ public class RegistrationService {
     private HashMap<String,String> validateUserData(Map<String,String> userData){
         HashMap<String,String> errors = new HashMap<>();
         
-        if(!validateUserNameFormat(userData.get("username"))) errors.put("username", "Invalid username format!");
+        if(!UserCredentialFormatValidator.validateUserNameFormat(userData.get("username"))) errors.put("username", "Invalid username format!");
         //Username must be 5-20 characters long, and can only contain lower and uppercase letters
         else if(this.userRepository.findByUsername(userData.get("username"))!=null) errors.put("username","Username already exists!");
         
-        if(!validatePasswordFormat(userData.get("password"))) errors.put("password", "Invalid password format!");
+        if(!UserCredentialFormatValidator.validatePasswordFormat(userData.get("password"))) errors.put("password", "Invalid password format!");
         //Password must be 8-20 characters long, have 1 uppercase letter, 1 lowercase letter and 1 number
         
-        if(!validateEmailFormat(userData.get("email"))) errors.put("email", "Invalid email format!");
+        if(!UserCredentialFormatValidator.validateEmailFormat(userData.get("email"))) errors.put("email", "Invalid email format!");
         else if(this.userRepository.findByEmail(userData.get("email"))!=null) errors.put("email","Email already in use!");
         
-        if(!validateEmployeeId(userData.get("employeeid"))) errors.put("employeeid","Invalid employee id!");
+        if(!UserCredentialFormatValidator.validateEmployeeIdFormat(userData.get("employeeid"))) errors.put("employeeid","Invalid employee id!");
         else if(this.userRepository.findByEmployeeId(userData.get("employeeid"))!=null) errors.put("employeeid","Employee ID already in use!");
         
         return errors;
-    }
-    
-    private boolean validateUserNameFormat(String username){
-        return username.matches("^[a-zA-Z]{5,20}$");
-    }
-    
-    private boolean validatePasswordFormat(String password){
-        boolean hasUppercase = password.matches(".*[A-Z]+.*");
-        boolean hasNumber = password.matches(".*[0-9]+.*");
-        boolean correctLength = password.matches("^[a-zA-Z0-9]{5,20}$");
-        return hasUppercase && hasNumber && correctLength;
-    }
-    
-    private boolean validateEmailFormat(String email){
-        return email.matches("[a-z\\-\\_0-9\\.]+@[a-z\\-]+\\.[a-z]{3}");
-    }
-    
-    private boolean validateEmployeeId(String employeeid){
-        return employeeid.matches("[0-9]{8}");
     }
 }
