@@ -1,8 +1,8 @@
 <div id="services-component-wrapper">
     <div id="services-component-sidemenu-container">
-        <mat-nav-list>
-            <mat-list-item *ngFor="let service of serviceNames;let i=index" (click)="selectService(i)">
-                {{ service }}
+        <mat-nav-list *ngIf="serviceNames">
+            <mat-list-item *ngFor="let service of serviceNames;let i=index;" (click)="selectService(service.id)">
+                {{ service.name }}
             </mat-list-item>
         </mat-nav-list>
     </div>

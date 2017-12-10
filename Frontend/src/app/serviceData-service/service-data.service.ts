@@ -1,33 +1,31 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router/';
+import { Observable } from 'rxjs/Observable';
+import { HttpClient,HttpHeaders } from '@angular/common/http'
+import { Subscription } from 'rxjs/Subscription';
+
 
 @Injectable()
 export class ServiceData_Service {
-  private serviceData;
-  private selectedServiceIndex:number;
+  private baseTargetUrl = 'http://localhost:8080/services';
+  private headers:HttpHeaders;
 
-  constructor(private router:Router) {
-    this.serviceData =[
-      {id:1,name:'service1',description:'egy'},
-      {id:2,name:'service2',description:'ketto'},
-    ];
-    this.selectedServiceIndex = 0;
+  constructor(private router:Router,private http:HttpClient) {
+    this.headers = new HttpHeaders(
+      {
+          'authorization':localStorage.getItem('jwtToken')
+      });
   }
 
-  getServiceData(){
-    return this.serviceData;
+  getServiceNames():Observable<Object>{
+    return this.http.get(this.baseTargetUrl,{headers:this.headers});
   }
 
-  getSelectedServiceData(){
-    return this.serviceData[this.selectedServiceIndex];
+  getServiceDescription(id:number):Observable<any>{
+    return this.http.get(this.baseTargetUrl+'/'+id+'/description',{headers:this.headers});
   }
 
-  setSelectedService(index:number){
-    this.selectedServiceIndex=index;
+  getServiceRequestForm(id:number):Observable<any>{
+    return this.http.get(this.baseTargetUrl+'/'+id+'/request',{headers:this.headers});
   }
-
-  getServiceNames(){
-    return this.serviceData.map(data=>data.name) ;
-  }
-
 }

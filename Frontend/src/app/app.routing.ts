@@ -9,7 +9,7 @@ import { SignupComponent }      from './authentication-module/signup/signup.comp
 import { RequestsComponent }    from './requests/requests.component';
 import { ServiceviewComponent } from './serviceview/serviceview.component';
 import { ServiceviewFormComponent } from './serviceview-form/serviceview-form.component';
-import { ServicedescriptionComponent } from './servicedescription/servicedescription.component';
+import { ServicedescriptionComponent } from './serviceview-description/serviceview-description.component';
 
 const routes: Routes = [
   { path: '',component:BaseLayoutComponent, canActivate:[AuthService], 

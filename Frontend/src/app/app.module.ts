@@ -22,7 +22,7 @@ import { MatListModule } from '@angular/material/list';
 import { RequestsComponent } from './requests/requests.component';
 import { ServiceviewComponent } from './serviceview/serviceview.component';
 import { ServiceviewFormComponent } from './serviceview-form/serviceview-form.component';
-import { ServicedescriptionComponent } from './servicedescription/servicedescription.component';
+import { ServicedescriptionComponent } from './serviceview-description/serviceview-description.component';
 
 import {ServiceData_Service} from './serviceData-service/service-data.service';
 

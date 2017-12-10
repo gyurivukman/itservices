@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import { Injectable } from '@angular/core'
 import { Router, CanActivate } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 import { HttpClient,HttpHeaders } from '@angular/common/http'
 
 @Injectable()
@@ -30,7 +30,7 @@ export class AuthService implements CanActivate{
   }
 
   logout(){
-    localStorage.removeItem("jwtToken");
+    localStorage.removeItem('jwtToken');
     this.router.navigate(['login']);
   }
 

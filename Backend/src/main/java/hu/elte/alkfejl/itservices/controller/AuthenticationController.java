@@ -58,7 +58,7 @@ public class AuthenticationController {
         
         boolean isUserValid = this.authService.validateUserCredentials(username, password);
         
-        if(isUserValid) body.put("message", this.authService.generateJWT(username));
+        if(isUserValid) body.put("token", this.authService.generateJWT(username));
         
         return ResponseEntity.status(isUserValid?HttpStatus.OK:HttpStatus.FORBIDDEN).body(body);
     }
@@ -77,5 +77,12 @@ public class AuthenticationController {
         }
         
         return res;
+    }
+    
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/validatetoken")
+    @ResponseBody
+    public ResponseEntity validateJwtToken(@RequestBody String jwtToken){
+        return this.authService.validateJwtToken(jwtToken)?ResponseEntity.status(HttpStatus.OK).build():ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 }

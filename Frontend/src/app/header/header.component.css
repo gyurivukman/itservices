@@ -16,7 +16,7 @@
 
 #big-header-text{
     color:white;
-    font-size:4em;
+    font-size:3.5em;
     font-family: Raleway;
 }
 /*
@@ -25,7 +25,10 @@
 }
 */
 #logout-button{
-    line-height:5% !important;
+    line-height:25px !important;
+}
+#logout-icon{
+    max-height:20px;
 }
 
 #header-decorator-logo{
@@ -43,7 +46,7 @@
 }
 
 .nav-tab-menu-element{
-    height:7% !important;
+    height:25px !important;
 }
 
 #navbar-container{

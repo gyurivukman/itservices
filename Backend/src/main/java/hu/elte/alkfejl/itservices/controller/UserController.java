@@ -4,9 +4,9 @@ import hu.elte.alkfejl.itservices.model.Role;
 import hu.elte.alkfejl.itservices.model.User;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import hu.elte.alkfejl.itservices.repository.UserRepositoryImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -16,13 +16,14 @@ import hu.elte.alkfejl.itservices.repository.UserRepositoryImpl;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-
-    UserRepositoryImpl userRepository;
-    
+/*
+    @Autowired
+    UserRepositoryImpl userRepository;*/
+    /*
     public UserController() {
         this.userRepository = new UserRepositoryImpl();
     }
-    
+    */
     /*
     @Autowired
     private UserService userService;

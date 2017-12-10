@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
+import io.jsonwebtoken.ExpiredJwtException;
+
 
 /**
  *
@@ -25,8 +27,9 @@ public final class AuthenticationService {
         String compactJws = Jwts.builder()
                                 .setSubject(username)
                                 .signWith(SignatureAlgorithm.HS512, SECRET)
+                                //.setExpiration(new Date(now.getTime()+15000))
                                 .compact();
-        
+        System.out.println("Token: "+compactJws);
         return compactJws;
     }
     
@@ -42,11 +45,17 @@ public final class AuthenticationService {
     
     public boolean validateJwtToken(String jwtToken){
         try{
-            return Jwts.parser().setSigningKey(SECRET).isSigned(SECRET);
+            //Jwts.parser().setSigningKey(SECRET).parseClaimsJws(jwtToken);
+            return Jwts.parser().setSigningKey(SECRET).isSigned(jwtToken);
         }catch(SignatureException e){
+            return false;
+        }catch(ExpiredJwtException e){
+            System.out.println("Expired JWT!");
+            System.out.println(e);
             return false;
         }catch(Exception e){
             System.out.println("Something awfully bad has happened!");
+            System.out.println(e);
             return false;
         }
     }
