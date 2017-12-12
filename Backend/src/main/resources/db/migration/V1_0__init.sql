@@ -1,4 +1,4 @@
-﻿-- --------------------------------------------------------
+-- --------------------------------------------------------
 -- Host:                         127.0.0.1
 -- Server version:               5.7.20-log - MySQL Community Server (GPL)
 -- Server OS:                    Win64
@@ -93,11 +93,16 @@ CREATE TABLE IF NOT EXISTS `schema_version` (
 CREATE TABLE IF NOT EXISTS `services` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `version` int(11) NOT NULL,
+  `average_responsetime` bigint(20) NOT NULL,
   `description` varchar(255) NOT NULL,
   `icon_file_name` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `required_position` varchar(255) NOT NULL,
+  `service_type_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_h4rqgjwnqidx6mvj4i22dxwxe` (`name`)
+  UNIQUE KEY `UK_h4rqgjwnqidx6mvj4i22dxwxe` (`name`),
+  KEY `FK9htmf3b0pfrtfr35mduky2qrb` (`service_type_id`),
+  CONSTRAINT `FK9htmf3b0pfrtfr35mduky2qrb` FOREIGN KEY (`service_type_id`) REFERENCES `service_types` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
@@ -129,17 +134,27 @@ CREATE TABLE IF NOT EXISTS `service_requests_comments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
+-- Dumping structure for tábla itservices.service_types
+CREATE TABLE IF NOT EXISTS `service_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `version` int(11) NOT NULL,
+  `service_type` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_kwhl9uw1mlpjf0luss01sts02` (`service_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Data exporting was unselected.
 -- Dumping structure for tábla itservices.users
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `version` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `role_id` int(11) NOT NULL DEFAULT 2,
-  `forename` varchar(255) NOT NULL,
-  `surname` varchar(255) NOT NULL,
   `employeeid` varchar(255) NOT NULL,
+  `forename` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `surname` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `role_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_6dotkott2kjsp8vw4d0m25fb7` (`email`),
   UNIQUE KEY `UK_r43af9ap4edm43mmtq01oddj6` (`username`),

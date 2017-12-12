@@ -8,8 +8,10 @@ import { HomepageComponent }    from './homepage-component/homepage-component.co
 import { SignupComponent }      from './authentication-module/signup/signup.component';
 import { RequestsComponent }    from './requests/requests.component';
 import { ServiceviewComponent } from './serviceview/serviceview.component';
-import { ServiceviewFormComponent } from './serviceview-form/serviceview-form.component';
+import { ServiceviewFormComponent }    from './serviceview-form/serviceview-form.component';
 import { ServicedescriptionComponent } from './serviceview-description/serviceview-description.component';
+import { AdminViewComponent }     from './admin-view/admin-view.component';
+import  {OperatorViewComponent }  from './operator-view/operator-view.component';
 
 const routes: Routes = [
   { path: '',component:BaseLayoutComponent, canActivate:[AuthService], 
@@ -26,6 +28,8 @@ const routes: Routes = [
         ]
       },
       { path: 'requests',component:RequestsComponent,pathMatch:'full'},
+      { path: 'admin',component:AdminViewComponent,pathMatch:'full'},
+      { path: 'operator',component:OperatorViewComponent,pathMatch:'full'},
     ]},
   { path: 'login', component: LoginComponent,pathMatch: 'full'},
   { path: 'signup', component: SignupComponent,pathMatch:'full'}
@@ -37,15 +41,3 @@ const routes: Routes = [
   declarations: [],
 })
 export class AppRoutingModule {}
-/*
-        children:[
-          {path:'',redirectTo:'1/description',pathMatch:'full'},
-          { path: ':serviceid',
-            component: ServiceviewComponent,
-            children:[
-              {path:'',redirectTo:'description',pathMatch:'full'},
-              {path:'description',component:ServicedescriptionComponent,pathMatch:'full'},
-              {path:'request',component:ServiceviewFormComponent,pathMatch:'full'}
-            ], 
-          }
-        ]*/

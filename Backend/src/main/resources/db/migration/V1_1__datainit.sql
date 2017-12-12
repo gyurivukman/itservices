@@ -23,8 +23,8 @@ INSERT INTO roles (version, name) VALUES
 	(0, 'ADMIN');
 	
 INSERT INTO users(version,email,password,username,role_id,forename,surname,employeeid) VALUES (0,"itservices_admin@sample-text.com","admin123","admin",5,"Dr.","Harambe","00000001");
-INSERT INTO services(version,description,icon_file_name,name) VALUES
-	(0,"Description 1","placeholder1.svg","Test service 1"),
-	(0,"Description 2","placeholder2.svg","Test service 2"),
-	(0,"Description 3","placeholder3.svg","Test service 3"),
-	(0,"Description 4","placeholder4.svg","Test service 4");
+INSERT INTO services(version,description,icon_file_name,name,average_responsetime,required_position) VALUES
+	(0,"Description 1","placeholder1.svg","Test service 1",3600000,'Employee'),
+	(0,"Description 2","placeholder2.svg","Test service 2",3600000,'Employee'),
+	(0,"Description 3","placeholder3.svg","Test service 3",3600000,'Line-Manager'),
+	(0,"Description 4","placeholder4.svg","Test service 4",3600000,'Senior-Employee');

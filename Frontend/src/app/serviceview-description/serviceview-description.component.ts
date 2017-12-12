@@ -1,40 +1,48 @@
-import { Component, OnInit,Input,AfterViewInit,OnChanges } from '@angular/core';
-import { ActivatedRoute }                                  from '@angular/router';
+import { Component, OnInit,Input,AfterViewInit,OnChanges,ViewEncapsulation }    from '@angular/core';
+import { ActivatedRoute,Router,NavigationEnd }                                  from '@angular/router';
 import { ServiceData_Service }                             from '../serviceData-service/service-data.service';
-import { Router }                                          from '@angular/router';
 import { Subscription }                                    from 'rxjs/Subscription';
-import { ActivationEnd }                                   from '@angular/router';
-import { NavigationEnd }                                   from '@angular/router';
-import { ActivationStart } from '@angular/router';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer }    from '@angular/platform-browser';
 
 @Component({
   selector: 'app-servicedescription',
   templateUrl: './serviceview-description.component.html',
-  styleUrls: ['./serviceview-description.component.css']
+  styleUrls: ['./serviceview-description.component.css'],
+  encapsulation:ViewEncapsulation.None
 })
 export class ServicedescriptionComponent implements OnInit{
-  private description;
+  private data;
+  private iconReady:boolean = false;
   private routerSub:Subscription;
   private serviceSub:Subscription;
 
-  constructor(private service:ServiceData_Service, private router:Router, private route:ActivatedRoute) {
+  constructor(private service:ServiceData_Service, 
+              private router:Router, 
+              private route:ActivatedRoute,
+              private iconRegistry:MatIconRegistry,
+              private sanitizer:DomSanitizer) {
     let serviceid:number;
     
-        this.route.parent.params.subscribe(params=>{
-          serviceid = params['serviceid'];
-        })
-    
-        this.routerSub = this.router.events.subscribe(event=>{
-          if(event instanceof NavigationEnd){
-            this.serviceSub=this.service.getServiceDescription(serviceid).subscribe(data=>{
-              this.description = data['description'];
-            });
-          }
-        })
-    
+      this.route.parent.params.subscribe(params=>{
+        serviceid = params['serviceid'];
+        this.iconReady = false;
+      })
+      this.routerSub = this.router.events.subscribe(event=>{
+        if(event instanceof NavigationEnd){
+          this.serviceSub = this.service.getServiceDescription(serviceid).subscribe(data =>{
+            console.log(data);
+            this.data = data;
+            this.iconRegistry.addSvgIcon('description-icon',this.sanitizer.bypassSecurityTrustResourceUrl('./assets/icons/'+data['iconFileName']+'.svg'));
+            this.iconReady = true;
+          })
+        }
+      })
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
 
   ngOnDestroy(){
     this.routerSub.unsubscribe();

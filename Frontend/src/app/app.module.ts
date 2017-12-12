@@ -12,9 +12,10 @@ import { HeaderComponent } from './header/header.component';
 import { HomepageComponent } from './homepage-component/homepage-component.component';
 import { AccountViewComponent} from './account-view-component/account-view-component.component';
 
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatListModule } from '@angular/material/list';
@@ -25,6 +26,8 @@ import { ServiceviewFormComponent } from './serviceview-form/serviceview-form.co
 import { ServicedescriptionComponent } from './serviceview-description/serviceview-description.component';
 
 import {ServiceData_Service} from './serviceData-service/service-data.service';
+import { AdminViewComponent } from './admin-view/admin-view.component';
+import { OperatorViewComponent } from './operator-view/operator-view.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,8 @@ import {ServiceData_Service} from './serviceData-service/service-data.service';
     ServiceviewComponent,
     ServiceviewFormComponent,
     ServicedescriptionComponent,
+    AdminViewComponent,
+    OperatorViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +55,8 @@ import {ServiceData_Service} from './serviceData-service/service-data.service';
     MatButtonModule,
     MatIconModule,
     MatTabsModule,
-    MatListModule
+    MatListModule,
+    MatCardModule
   ],
   providers: [ServiceData_Service],
   bootstrap: [AppComponent]

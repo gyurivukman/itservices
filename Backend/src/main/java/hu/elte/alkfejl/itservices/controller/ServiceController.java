@@ -32,16 +32,14 @@ public class ServiceController {
     private ServiceRepository serviceRepository;
     
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/{id}/description")
+    @GetMapping("/{id}") 
     @ResponseBody
-    public ResponseEntity getServiceDescriptionById(@PathVariable int id, @RequestHeader(value="Authorization")String jwtToken){
+    public ResponseEntity getServiceDescriptionDataById(@PathVariable int id, @RequestHeader(value="Authorization")String jwtToken){
         ResponseEntity res;
         if(this.authService.validateJwtToken(jwtToken)){
             Service service = this.serviceRepository.findById(id);
             if(service!=null){
-                HashMap<String,String> jsondata = new HashMap<>();
-                jsondata.put("description", service.getDescription());
-                res = ResponseEntity.status(HttpStatus.OK).body(jsondata);
+                res = ResponseEntity.status(HttpStatus.OK).body(service);
             }else{
                 res = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }

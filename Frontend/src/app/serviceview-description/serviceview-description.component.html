@@ -1,4 +1,21 @@
-<p>
-  servicedescription works!
-  {{description}}
-</p>
+<div id="service-description-wrapper">
+  <div id="service-description-header">
+    <div id = "service-description-icon-container">
+        <mat-icon *ngIf="iconReady" id="service-description-icon" svgIcon="description-icon"></mat-icon>
+        &nbsp;
+    </div>
+    <div id = "service-description-text-container" *ngIf="data">
+        <span id="service-name">{{data['name']}}</span>
+    </div>
+  </div>
+  <hr id="service-description-separator">
+  <div id="service-description-content" *ngIf="data">
+    <div>
+      <span>Description: {{data['description']}}</span>
+    </div>
+    <div>
+      <span>Required Position to request: {{data['requiredPosition']}}</span>
+      <span>Service type: {{data['serviceType']['serviceType']}}</span>
+    </div>
+  </div>
+</div>

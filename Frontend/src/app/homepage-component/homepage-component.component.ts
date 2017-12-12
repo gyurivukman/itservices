@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 import { ServiceData_Service} from '../serviceData-service/service-data.service';
 import { Router,ActivatedRoute } from '@angular/router';
 import { OnDestroy } from '@angular/core';
@@ -7,7 +7,8 @@ import { Subscription } from 'rxjs/Subscription';
 @Component({
   selector: 'homepage-component',
   templateUrl: './homepage-component.component.html',
-  styleUrls: ['./homepage-component.component.css']
+  styleUrls: ['./homepage-component.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HomepageComponent implements OnInit, OnDestroy {
   private serviceNames;

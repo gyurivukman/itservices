@@ -1,5 +1,8 @@
 #navbar-container{
     display:flex;
+    height:25px;
+    min-height:25px;
+    max-height:25px;
 }
 #navbar{
     display: inline-flex;
@@ -7,4 +10,8 @@
 #navbar-decorator{
     background:linear-gradient(to right,#734aa5,#9d7fc1);
     flex:1;
+}
+#serviceview-content-container{
+    height:calc(100% - 35px);
+    max-height:calc(100% - 35px);
 }

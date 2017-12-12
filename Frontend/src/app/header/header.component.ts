@@ -15,10 +15,12 @@ export class HeaderComponent implements OnInit {
     {label: 'Home', link: '/homepage'},
     {label: 'Account', link: '/account'},
     {label: 'Requests', link: '/requests'},
-    {label: 'Admin', link: '/requests'},
   ];
   constructor(private authService:AuthService,private iconRegistry:MatIconRegistry,private sanitizer:DomSanitizer) {
     this.iconRegistry.addSvgIcon('logout',this.sanitizer.bypassSecurityTrustResourceUrl('./assets/icons/logout.svg'));
+    if(this.userhasPermission()){
+      this.tabLinks.push({label: 'Operator', link: '/operator'},{label: 'Admin', link: '/admin'});
+    }
   }
 
   ngOnInit() {
@@ -26,5 +28,8 @@ export class HeaderComponent implements OnInit {
 
   logout(){
     this.authService.logout();
+  }
+  private userhasPermission():boolean{
+    return false;
   }
 }

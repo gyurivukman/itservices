@@ -58,5 +58,4 @@ public class ServiceRequest extends BaseEntity{
         ACCESS_REQUEST,HELP_REQUEST,BUG_REPORT
     }
     
-    
 }

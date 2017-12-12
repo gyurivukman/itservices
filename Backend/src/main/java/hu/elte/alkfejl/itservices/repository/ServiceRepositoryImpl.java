@@ -1,6 +1,5 @@
 package hu.elte.alkfejl.itservices.repository;
 
-import hu.elte.alkfejl.itservices.model.Pair;
 import hu.elte.alkfejl.itservices.model.Service;
 import java.util.HashMap;
 import java.util.LinkedList;

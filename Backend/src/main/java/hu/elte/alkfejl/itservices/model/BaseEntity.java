@@ -1,4 +1,5 @@
 package hu.elte.alkfejl.itservices.model;
+import java.io.Serializable;
 import lombok.Data;
 import javax.persistence.*;
 /**
@@ -7,7 +8,7 @@ import javax.persistence.*;
  */
 @Data
 @MappedSuperclass
-public class BaseEntity {
+public class BaseEntity implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;

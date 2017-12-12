@@ -22,7 +22,7 @@ export class ServiceData_Service {
   }
 
   getServiceDescription(id:number):Observable<any>{
-    return this.http.get(this.baseTargetUrl+'/'+id+'/description',{headers:this.headers});
+    return this.http.get(this.baseTargetUrl+'/'+id,{headers:this.headers});
   }
 
   getServiceRequestForm(id:number):Observable<any>{
