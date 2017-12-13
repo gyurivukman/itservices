@@ -11,11 +11,12 @@
   <hr id="service-description-separator">
   <div id="service-description-content" *ngIf="data">
     <div>
-      <span>Description: {{data['description']}}</span>
+      <span>{{data['description']}}</span>
     </div>
-    <div>
-      <span>Required Position to request: {{data['requiredPosition']}}</span>
-      <span>Service type: {{data['serviceType']['serviceType']}}</span>
+    <div id="service-description-properties-container">
+      <span><span class="service-description-attritube">Required Position to request:</span> {{data['requiredPosition']}}</span>
+      <span><span class="service-description-attritube">Service type:</span> {{data['serviceType']['serviceType']}}</span>
+      <span><span class="service-description-attritube">Average Responsetime:</span> {{responseTime}} minutes</span>
     </div>
   </div>
 </div>

@@ -13,6 +13,7 @@ import { DomSanitizer }    from '@angular/platform-browser';
 })
 export class ServicedescriptionComponent implements OnInit{
   private data;
+  private responseTime;
   private iconReady:boolean = false;
   private routerSub:Subscription;
   private serviceSub:Subscription;
@@ -31,8 +32,8 @@ export class ServicedescriptionComponent implements OnInit{
       this.routerSub = this.router.events.subscribe(event=>{
         if(event instanceof NavigationEnd){
           this.serviceSub = this.service.getServiceDescription(serviceid).subscribe(data =>{
-            console.log(data);
             this.data = data;
+            this.responseTime = (data['averageResponsetime'])/60000;
             this.iconRegistry.addSvgIcon('description-icon',this.sanitizer.bypassSecurityTrustResourceUrl('./assets/icons/'+data['iconFileName']+'.svg'));
             this.iconReady = true;
           })

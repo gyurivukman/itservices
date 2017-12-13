@@ -17,7 +17,6 @@
 }
 #service-name{
     vertical-align: middle;
-    border:1px solid red;
     font-size:3em;
     font-family: Roboto;
 }
@@ -46,4 +45,11 @@
     width: 95%;          
     background-color:rgba(0,0,0,.12);
     height: 1px;
+}
+#service-description-properties-container{
+    display:flex;
+    justify-content: space-between;
+}
+.service-description-attritube{
+    font-weight:bold;
 }
