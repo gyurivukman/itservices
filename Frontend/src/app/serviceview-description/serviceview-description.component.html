@@ -4,13 +4,13 @@
         <mat-icon *ngIf="iconReady" id="service-description-icon" svgIcon="description-icon"></mat-icon>
         &nbsp;
     </div>
-    <div id = "service-description-text-container" *ngIf="data">
+    <div id = "service-description-title-container" *ngIf="data">
         <span id="service-name">{{data['name']}}</span>
     </div>
   </div>
   <hr id="service-description-separator">
   <div id="service-description-content" *ngIf="data">
-    <div>
+    <div id="service-description-text-container">
       <span>{{data['description']}}</span>
     </div>
     <div id="service-description-properties-container">

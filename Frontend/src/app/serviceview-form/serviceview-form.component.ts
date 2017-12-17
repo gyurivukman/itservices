@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivationStart,NavigationEnd,ActivatedRoute} from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import {ServiceData_Service} from '../serviceData-service/service-data.service';
+import { ServiceData_Service } from '../serviceData-service/service-data.service';
+import { NgForm } from '@angular/forms';
+import { NgSwitch } from '@angular/common';
 
 @Component({
   selector: 'app-serviceview-form',
@@ -11,8 +13,9 @@ import {ServiceData_Service} from '../serviceData-service/service-data.service';
 export class ServiceviewFormComponent implements OnInit {
   serviceSub:Subscription;
   routerSub:Subscription;
+  kukken;
 
-  private serviceid;
+  private serviceFormData;
 
   constructor(private service:ServiceData_Service,private router:Router,private route:ActivatedRoute) {
     let serviceid:number;
@@ -24,8 +27,9 @@ export class ServiceviewFormComponent implements OnInit {
         this.routerSub = this.router.events.subscribe(event=>{
           if(event instanceof NavigationEnd){
             this.serviceSub=this.service.getServiceRequestForm(serviceid).subscribe(data=>{
-              console.log(data);
-              this.serviceid = data['id'];
+              this.serviceFormData = JSON.parse(data['formdata']);
+              console.log(this.serviceFormData);
+              this.kukken = 'picsa';
             });
           }
         })
@@ -37,4 +41,7 @@ export class ServiceviewFormComponent implements OnInit {
     this.routerSub.unsubscribe();
   }
 
+  submitRequest(rf:NgForm){
+    console.log(rf.value);
+  }
 }

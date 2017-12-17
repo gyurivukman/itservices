@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatListModule } from '@angular/material/list';
+import {MatSelectModule} from '@angular/material/select';
 
 import { RequestsComponent } from './requests/requests.component';
 import { ServiceviewComponent } from './serviceview/serviceview.component';
@@ -45,6 +47,7 @@ import { OperatorViewComponent } from './operator-view/operator-view.component';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AuthenticationModule,
@@ -56,7 +59,9 @@ import { OperatorViewComponent } from './operator-view/operator-view.component';
     MatIconModule,
     MatTabsModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [ServiceData_Service],
   bootstrap: [AppComponent]

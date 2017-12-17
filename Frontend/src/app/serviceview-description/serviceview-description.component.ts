@@ -29,10 +29,12 @@ export class ServicedescriptionComponent implements OnInit{
         serviceid = params['serviceid'];
         this.iconReady = false;
       })
+      
       this.routerSub = this.router.events.subscribe(event=>{
         if(event instanceof NavigationEnd){
           this.serviceSub = this.service.getServiceDescription(serviceid).subscribe(data =>{
             this.data = data;
+            console.log(data);
             this.responseTime = (data['averageResponsetime'])/60000;
             this.iconRegistry.addSvgIcon('description-icon',this.sanitizer.bypassSecurityTrustResourceUrl('./assets/icons/'+data['iconFileName']+'.svg'));
             this.iconReady = true;

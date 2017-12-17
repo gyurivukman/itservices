@@ -59,7 +59,9 @@ public class ServiceController {
         if(this.authService.validateJwtToken(jwtToken)){
             Service service = this.serviceRepository.findById(id);
             if(service!=null){
-                res = ResponseEntity.status(HttpStatus.OK).body(service);
+                Map<String,String> requestData = new HashMap<>();
+                requestData.put("formdata", service.getRequestForm());
+                res = ResponseEntity.status(HttpStatus.OK).body(requestData);
             }else{
                 res = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }

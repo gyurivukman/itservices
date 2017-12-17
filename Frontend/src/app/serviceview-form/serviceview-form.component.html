@@ -1,4 +1,22 @@
-<p>
-  serviceview-form works!
-  {{serviceid}}
-</p>
+<form id = "requestform" name="requestForm" #rf="ngForm" (ngSubmit)="submitRequest(rf)">
+
+    <div *ngFor ="let formrow of serviceFormData" [ngSwitch]="formrow.type">
+
+      <mat-form-field *ngSwitchCase="'inputfield'">
+        <input type="text" matInput placeholder={{formrow.placeholder}} name={{formrow.name}} #{{formrow.name}} required ngModel>
+      </mat-form-field>
+
+      <mat-form-field *ngSwitchCase="'select'">
+
+        <mat-select [(value)]="kukken" name={{formrow.name}} #{{formrow.name}} ngModel required>
+          <mat-option *ngFor="let option of formrow.options" [value]=option>
+            {{option}}
+          </mat-option>
+        </mat-select>
+
+      </mat-form-field>
+
+    </div>
+    <button mat-raised-button color="primary" type="submit" label="Submit">Submit</button>
+
+</form>

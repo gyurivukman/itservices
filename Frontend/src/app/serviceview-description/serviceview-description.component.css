@@ -27,12 +27,14 @@
     text-align:center;
 }
 
-#service-description-text-container{
+#service-description-title-container{
     width:calc(100% - 150px);
     max-width:calc(100% - 150px);
     text-align:center;
 }
-
+#service-description-text-container{
+    text-align:justify;
+}
 #service-description-icon{
     height:100px !important;
     width:100px !important;
@@ -47,6 +49,7 @@
     height: 1px;
 }
 #service-description-properties-container{
+    margin-top:10px;
     display:flex;
     justify-content: space-between;
 }
