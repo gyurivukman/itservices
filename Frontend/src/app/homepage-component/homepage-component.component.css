@@ -5,6 +5,7 @@
     max-height:100%;
     display:flex;
 }
+
 #services-component-sidemenu-container{
     width:20%;
     max-width:20%;
@@ -14,7 +15,6 @@
 #services-component-content-container{
     width:80%;
     max-width:80%;
-    padding: 5px;
     height:100%;
     max-height:100%;
 }

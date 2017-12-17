@@ -4,6 +4,7 @@
     min-height:25px;
     max-height:25px;
 }
+
 #navbar{
     display: inline-flex;
 }
@@ -11,7 +12,17 @@
     background:linear-gradient(to right,#734aa5,#9d7fc1);
     flex:1;
 }
+
+.service-description-nav-tab-menu-element{
+    height:25px !important;
+}
+
 #serviceview-content-container{
-    height:calc(100% - 35px);
-    max-height:calc(100% - 35px);
+    position:relative;
+    height:calc(100% - 30px);
+    max-height:calc(100% - 30px);
+    width:calc(100% - 10px);
+    max-width:calc(100% - 10px);
+    margin-left:auto;
+    margin-right:auto;
 }

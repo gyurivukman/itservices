@@ -1,36 +1,39 @@
-<form id = "requestform" name="requestForm" #rf="ngForm" (ngSubmit)="submitRequest(rf)" *ngIf = "serviceFormData" >
+<div id="service-request-form-wrapper">
 
-    <div *ngFor ="let formrow of serviceFormData" [ngSwitch]="formrow.type">
+  <form id = "requestform" class="center-horizontally uniform-width" name="requestForm" #rf="ngForm" (ngSubmit)="submitRequest(rf)" *ngIf = "serviceFormData" >
 
-      <mat-form-field *ngSwitchCase="'inputfield'">
-        <input type="text" matInput placeholder={{formrow.placeholder}} name={{formrow.name}} #{{formrow.name}} required ngModel>
-      </mat-form-field>
+      <div *ngFor ="let formrow of serviceFormData" [ngSwitch]="formrow.type">
 
-      <mat-form-field *ngSwitchCase="'select'">
-        <mat-select [(value)]="kukken" name={{formrow.name}} #{{formrow.name}} ngModel required>
-          <mat-option *ngFor="let option of formrow.options" [value]=option>
-            {{option}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+        <mat-form-field class="center-horizontally inputfield uniform-width" *ngSwitchCase="'inputfield'">
+          <input type="text" matInput placeholder={{formrow.placeholder}} name={{formrow.name}} #{{formrow.name}} required ngModel>
+        </mat-form-field>
 
-      <div *ngSwitchCase="'checkbox'">
-        <mat-checkbox name={{formrow.name}} #{{formrow.name}} ngModel [checked]=formrow.checked></mat-checkbox>
-      </div>
+        <mat-form-field class="center-horizontally select uniform-width" *ngSwitchCase="'select'">
+          <mat-select placeholder={{formrow.placeholder}} name={{formrow.name}} #{{formrow.name}} ngModel required>
+            <mat-option *ngFor="let option of formrow.options" [value]=option>
+              {{option}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-      <div *ngSwitchCase="'radiogroup'">
-        <mat-radio-group *ngFor="let radiobutton of formrow.radiobuttons" required>
-          <mat-radio-button name={{radiobutton.name}} #{{radiobutton.name}} ngModel [checked]=radiobutton.checked>{{radiobutton.label}}</mat-radio-button>
-        </mat-radio-group>
-      </div>
+        <div class="center-horizontally checkbox uniform-width" *ngSwitchCase="'checkbox'">
+          <mat-checkbox name={{formrow.name}} #{{formrow.name}} ngModel [checked]=formrow.checked>{{formrow.label}}</mat-checkbox>
+        </div>
 
-      <div *ngSwitchCase="'textarea'">
+        <div class="center-horizontally radiogroup uniform-width" *ngSwitchCase="'radiogroup'">
+          <mat-radio-group class="radiogroup" name={{formrow.name}} #{{formrow.name}} ngModel required>
+            <mat-radio-button class="radiobutton" *ngFor="let radiobutton of formrow.radiobuttons" [value]=radiobutton.label [checked]=radiobutton.checked>{{radiobutton.label}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <mat-form-field class="center-horizontally uniform-width" *ngSwitchCase="'textarea'">
           <textarea matInput placeholder={{formrow.placeholder}} name={{formrow.name}} #{{formrow.name}} ngModel></textarea>
+        </mat-form-field>
+
+      </div>
+      <div id="request-form-submit-button-container" class="center-horizontally uniform-width">
+        <button mat-raised-button color="primary" type="submit" label="Submit" class="uniform-width">Submit</button>
       </div>
 
-    </div>
-    <div>
-      <button mat-raised-button color="primary" type="submit" label="Submit">Submit</button>
-    </div>
-
-</form>
+  </form>
+</div>
