@@ -6,9 +6,9 @@
                 <span id="big-header-text">IT Services Portal</span>
             </div>
             
-            <div id="navbar-container">
-                <nav id = "navbar" mat-tab-nav-bar [backgroundColor]="tabNavBackground">
-                    <a class="nav-tab-menu-element" mat-tab-link
+            <div id="header-navbar-container">
+                <nav id = "header-navbar" mat-tab-nav-bar [backgroundColor]="tabNavBackground">
+                    <a class="header-nav-tab-menu-element" mat-tab-link
                         *ngFor="let tabLink of tabLinks; let i = index"                            
                         [routerLink]="tabLink.link"
                         routerLinkActive #rla="routerLinkActive"

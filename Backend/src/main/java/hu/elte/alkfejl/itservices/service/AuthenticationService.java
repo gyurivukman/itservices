@@ -9,11 +9,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.impl.DefaultClaims;
-
-import io.jsonwebtoken.impl.crypto.MacProvider;
-import java.security.Key;
 
 
 /**
