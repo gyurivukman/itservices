@@ -13,7 +13,6 @@ import { NgSwitch } from '@angular/common';
 export class ServiceviewFormComponent implements OnInit {
   serviceSub:Subscription;
   routerSub:Subscription;
-  kukken;
 
   private serviceFormData;
 
@@ -29,7 +28,6 @@ export class ServiceviewFormComponent implements OnInit {
             this.serviceSub=this.service.getServiceRequestForm(serviceid).subscribe(data=>{
               this.serviceFormData = JSON.parse(data['formdata']);
               console.log(this.serviceFormData);
-              this.kukken = 'picsa';
             });
           }
         })

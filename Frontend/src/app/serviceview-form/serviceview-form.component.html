@@ -7,16 +7,30 @@
       </mat-form-field>
 
       <mat-form-field *ngSwitchCase="'select'">
-
         <mat-select [(value)]="kukken" name={{formrow.name}} #{{formrow.name}} ngModel required>
           <mat-option *ngFor="let option of formrow.options" [value]=option>
             {{option}}
           </mat-option>
         </mat-select>
-
       </mat-form-field>
 
+      <div *ngSwitchCase="'checkbox'">
+        <mat-checkbox name={{formrow.name}} #{{formrow.name}} ngModel [checked]={{formrow.checked}}></mat-checkbox>
+      </div>
+
+      <div *ngSwitchCase="'radiogroup'">
+        <mat-radio-group *ngFor="let radiobutton of formrow.radiobuttons" required>
+          <mat-radio-button name={{radiobutton.name}} #{{radiobutton.name}} ngModel [checked]={{radiobutton.checked}}>{{radiobutton.label}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div *ngSwitchCase="'textarea'">
+          <textarea matInput placeholder={{formrow.placeholder}} name={{formrow.name}} #{{formrow.name}} ngModel></textarea>
+      </div>
+
     </div>
-    <button mat-raised-button color="primary" type="submit" label="Submit">Submit</button>
+    <div>
+      <button mat-raised-button color="primary" type="submit" label="Submit">Submit</button>
+    </div>
 
 </form>

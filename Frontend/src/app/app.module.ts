@@ -20,7 +20,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatListModule } from '@angular/material/list';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { RequestsComponent } from './requests/requests.component';
 import { ServiceviewComponent } from './serviceview/serviceview.component';
@@ -61,6 +62,7 @@ import { OperatorViewComponent } from './operator-view/operator-view.component';
     MatListModule,
     MatCardModule,MatSelectModule,
     FormsModule,
+    MatRadioModule,
     ReactiveFormsModule
   ],
   providers: [ServiceData_Service],
