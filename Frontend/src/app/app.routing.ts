@@ -16,11 +16,11 @@ import  {OperatorViewComponent }  from './operator-view/operator-view.component'
 const routes: Routes = [
   { path: '',component:BaseLayoutComponent, canActivate:[AuthService], 
     children:[
-      { path:'',redirectTo:'homepage/1',pathMatch:'full'},
-      { path:'homepage',redirectTo:'homepage/1',pathMatch:'full'},
+      { path:'',redirectTo:'services/1',pathMatch:'full'},
+      { path:'services',redirectTo:'services/1',pathMatch:'full'},
       { path:'account', component:AccountViewComponent,pathMatch:'full'},
       { 
-        path: 'homepage/:serviceid',component:HomepageComponent,
+        path: 'services/:serviceid',component:HomepageComponent,
         children:[
           { path: '', redirectTo:'description',pathMatch:'full'},
           { path: 'request', component:ServiceviewFormComponent,pathMatch:'full'},

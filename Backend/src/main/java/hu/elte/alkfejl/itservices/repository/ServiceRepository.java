@@ -11,7 +11,7 @@ import org.springframework.data.repository.CrudRepository;
  * @author gyuri
  */
 
-public interface ServiceRepository extends CrudRepository<Service, Integer>{
+public interface ServiceRepository extends CrudRepository<Service,Integer>,ServiceRepositoryCustom{
     public void addService(Map<String,String> serviceData); //dummy
     
     public Service findById(int id);

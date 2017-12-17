@@ -11,11 +11,13 @@ import { AuthService } from '../authentication-module/authservice/auth.service';
   encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent implements OnInit {
+  
   tabLinks = [
-    {label: 'Home', link: '/homepage'},
+    {label: 'Services', link: '/services'},
     {label: 'Account', link: '/account'},
     {label: 'Requests', link: '/requests'},
   ];
+
   constructor(private authService:AuthService,private iconRegistry:MatIconRegistry,private sanitizer:DomSanitizer) {
     this.iconRegistry.addSvgIcon('logout',this.sanitizer.bypassSecurityTrustResourceUrl('./assets/icons/logout.svg'));
     if(this.userhasPermission()){

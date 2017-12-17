@@ -1,4 +1,4 @@
-<form id = "requestform" name="requestForm" #rf="ngForm" (ngSubmit)="submitRequest(rf)">
+<form id = "requestform" name="requestForm" #rf="ngForm" (ngSubmit)="submitRequest(rf)" *ngIf = "serviceFormData" >
 
     <div *ngFor ="let formrow of serviceFormData" [ngSwitch]="formrow.type">
 
@@ -15,12 +15,12 @@
       </mat-form-field>
 
       <div *ngSwitchCase="'checkbox'">
-        <mat-checkbox name={{formrow.name}} #{{formrow.name}} ngModel [checked]={{formrow.checked}}></mat-checkbox>
+        <mat-checkbox name={{formrow.name}} #{{formrow.name}} ngModel [checked]=formrow.checked></mat-checkbox>
       </div>
 
       <div *ngSwitchCase="'radiogroup'">
         <mat-radio-group *ngFor="let radiobutton of formrow.radiobuttons" required>
-          <mat-radio-button name={{radiobutton.name}} #{{radiobutton.name}} ngModel [checked]={{radiobutton.checked}}>{{radiobutton.label}}</mat-radio-button>
+          <mat-radio-button name={{radiobutton.name}} #{{radiobutton.name}} ngModel [checked]=radiobutton.checked>{{radiobutton.label}}</mat-radio-button>
         </mat-radio-group>
       </div>
 

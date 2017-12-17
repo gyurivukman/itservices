@@ -14,11 +14,10 @@ export class HomepageComponent implements OnInit, OnDestroy {
   private serviceNames;
   private sub:Subscription;
 
-  constructor(private serviceData_service:ServiceData_Service,private router:Router,private activatedRoute:ActivatedRoute) {
-  }
+  constructor(private serviceData_service:ServiceData_Service,private router:Router,private activatedRoute:ActivatedRoute) {}
 
-  selectService(id){
-    this.router.navigate(['homepage',id,this.activatedRoute.snapshot.children[0].url[0].path]);
+  selectService(id:number){
+    this.router.navigate(['services',id,this.activatedRoute.snapshot.children[0].url[0].path]);
   }
 
   ngOnInit() {

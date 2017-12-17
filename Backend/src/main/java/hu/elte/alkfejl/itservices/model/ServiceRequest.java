@@ -50,11 +50,11 @@ public class ServiceRequest extends BaseEntity{
     @Column(nullable = false)
     private Date dateOfRequest;
     
-    private enum State{
+    public enum State{
         OPENED,IN_PROGRESS,CLOSED,REOPENED,BLOCKED
     }
     
-    private enum RequestType{
+    public enum RequestType{
         ACCESS_REQUEST,HELP_REQUEST,BUG_REPORT
     }
     

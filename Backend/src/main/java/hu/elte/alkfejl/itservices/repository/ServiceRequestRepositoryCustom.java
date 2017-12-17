@@ -1,0 +1,16 @@
+package hu.elte.alkfejl.itservices.repository;
+
+import hu.elte.alkfejl.itservices.model.ServiceRequest;
+import hu.elte.alkfejl.itservices.model.User;
+import java.util.List;
+import java.util.Map;
+
+/**
+ *
+ * @author gyuri
+ */
+public interface ServiceRequestRepositoryCustom {
+    public ServiceRequest findById(int id);
+    public List<ServiceRequest> findByServiceId(int id);
+    public void addServiceRequest(Map<String,String> formData,User requester);
+}

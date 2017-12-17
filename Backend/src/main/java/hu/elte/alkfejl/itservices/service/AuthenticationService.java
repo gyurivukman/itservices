@@ -9,6 +9,11 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jwt;
+import io.jsonwebtoken.impl.DefaultClaims;
+
+import io.jsonwebtoken.impl.crypto.MacProvider;
+import java.security.Key;
 
 
 /**
@@ -45,7 +50,6 @@ public final class AuthenticationService {
     
     public boolean validateJwtToken(String jwtToken){
         try{
-            //Jwts.parser().setSigningKey(SECRET).parseClaimsJws(jwtToken);
             return Jwts.parser().setSigningKey(SECRET).isSigned(jwtToken);
         }catch(SignatureException e){
             return false;
@@ -62,5 +66,10 @@ public final class AuthenticationService {
     
     public boolean hasPermission(String username,String permission){
         return this.userRepository.hasPermission(username,permission);
+    }
+    
+    public User getUserFromJwt(String jwtToken){
+        String username  = ((DefaultClaims) Jwts.parser().setSigningKey(SECRET).parse(jwtToken).getBody()).getSubject();
+        return this.userRepository.findByUsername(username);
     }
 }

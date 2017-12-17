@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit{
   attemptLogin(loginForm:NgForm){
       this.authService.login(loginForm.value).subscribe(
         res=>{
-          localStorage.setItem("jwtToken",res['token']);
+          localStorage.setItem('jwtToken',res['token']);
           this.router.navigate(['']);
         },
         err=>{

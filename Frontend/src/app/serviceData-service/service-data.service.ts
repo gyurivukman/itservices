@@ -29,4 +29,14 @@ export class ServiceData_Service {
     return this.http.get(this.baseTargetUrl+'/'+id+'/request',{headers:this.headers});
   }
   
+  postServiceRequest(id:number,formData):Observable<any>{
+    let headers = new HttpHeaders(
+      {
+          'authorization':localStorage.getItem('jwtToken'),
+          'Content-Type':'application/json'
+      });
+      
+    return this.http.post(this.baseTargetUrl+'/'+id,formData,{headers:headers});
+  }
+
 }
