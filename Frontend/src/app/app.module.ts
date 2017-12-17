@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app.routing';
 import { HeaderComponent } from './header/header.component';
 import { HomepageComponent } from './homepage-component/homepage-component.component';
 import { AccountViewComponent} from './account-view-component/account-view-component.component';
+import { AccountModifyService } from './account-modify/account-modify.service';
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
@@ -22,6 +23,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatTooltipModule } from '@angular/material';
 
 import { RequestsComponent } from './requests/requests.component';
 import { ServiceviewComponent } from './serviceview/serviceview.component';
@@ -65,7 +67,7 @@ import { OperatorViewComponent } from './operator-view/operator-view.component';
     MatRadioModule,
     ReactiveFormsModule
   ],
-  providers: [ServiceData_Service],
+  providers: [ServiceData_Service, AccountModifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -44,15 +44,4 @@ export class AuthService implements CanActivate{
 
     return this.http.post(targetUrl,body,{headers:headers});
   }
-
-  modify(userData):Observable<Object>{
-    const targetUrl = 'http://localhost:8080/auth/modify';
-    const body = userData;
-    const headers = new HttpHeaders(
-      {
-          'Content-Type': 'application/json'
-      });
-
-    return this.http.post(targetUrl,body,{headers:headers});
-  }
 }
