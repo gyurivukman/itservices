@@ -1,4 +1,4 @@
-INSERT INTO permissions (version, name) VALUES
+INSERT INTO permissions(version, name) VALUES
 	(0, 'REQUEST_SERVICE'),
 	(0, 'VIEW_SERVICE'),
 	(0, 'APPROVE_REQUEST'),
@@ -15,17 +15,20 @@ INSERT INTO permissions (version, name) VALUES
 	(0, 'EDIT_PERMISSIONS'),
 	(0, 'EDIT_USER_CREDENTIALS');
 	
-INSERT INTO roles (version, name) VALUES
+INSERT INTO roles(version, name) VALUES
 	(0, 'GUEST'),
 	(0, 'EMPLOYEE'),
 	(0, 'OPERATOR'),
 	(0, 'OPERATOR_MANAGER'),
 	(0, 'ADMIN');
 	
+INSERT INTO service_types(version, service_type) VALUES
+	(0, 'ACCESS_REQUEST'),
+	(0, 'IT_REQUEST');
+	
 INSERT INTO users(version,email,password,username,role_id,forename,surname,employeeid) VALUES (0,"itservices_admin@sample-text.com","admin123","admin",5,"Dr.","Harambe","00000001");
-INSERT INTO service_types(version,service_type) VALUES (0,"ACCESS_REQUEST"),(0,"TRAINING_REQUEST"),(0,"BUG_REPORT"),(0,"HARDWARE_REQUEST"),(0,"SOFTWARE_REQUEST"),(0,"MISC_REQUEST");
-INSERT INTO services(version,description,icon_file_name,name,average_responsetime,required_position,service_type_id,request_form) VALUES
-	(0,"Description 1","warning","Test service 1",3600000,'Employee',1,NULL),
-	(0,"Description 2","logout","Test service 2",3600000,'Employee',4,NULL),
-	(0,"Description 3","warning","Test service 3",3600000,'Line-Manager',2,'[{"type":"input","name":"inputtext","label":"inputlábel","placeholder":"Whatsthis"},{"type":"select","name":"szelekt","label":"szelektlábel","placeholder":"Szelektáljá valamit","options":["egy","ketto","harom"]},{"type":"checkbox","name":"csekkboksz","label":"csekkbokszlábel"},{"type":"radiogroup","name":"radios","label":"radioslabel","radiobuttons":[{"label":"label1","checked":"true"},{"label":"label2"}]},{"type":"textarea","name":"textarea","label":"texrarealábel","placeholder":"pláceholdér"}]'),
-	(0,"Description 4","logout","Test service 4",3600000,'Senior-Employee',5,NULL);
+INSERT INTO services(version,description,icon_file_name,name,average_responsetime,required_position,request_form,service_type_id) VALUES
+	(0,"Request a key to one of our VPNs.","vpn","VPN key request",1800000,'Employee','[{"type":"inputfield","name":"username","placeholder":"Username"},{"type":"select","name":"server","placeholder":"VPN 1","options":["VPN 1","VPN 2"]}]', 1),
+	(0,"Report a hardware or software related workstation fault.","computererror","Workstation repair",3600000,'Employee','[{"type":"inputfield","name":"pcname","placeholder":"PC Name"},{"type":"select","name":"errortype","placeholder":"Hardware related","options":["Hardware related","Software related"]},{"type":"textarea","name":"description","placeholder":"Description"}]', 2),
+	(0,"Request access to one of our corporate database servers.","database","Database access",1800000,'Line-Manager','[{"type":"inputfield","name":"username","placeholder":"Desired username"},{"type":"inputfield","name":"password","placeholder":"Desired password"},{"type":"select","name":"server","placeholder":"db1.it.net","options":["db1.it.net 1","db2.it.net","db3.it.net"]}]', 1),
+	(0,"Request a corporate OS image to be installed on the specified computer.","windows","Install corporate image",3600000,'Senior-Employee','[{"type":"inputfield","name":"pcname","placeholder":"PC Name"},{"type":"radiogroup","name":"os","radiobuttons":[{"label":"Windows 10","checked":true},{"label":"Windows 8.1","checked":false},{"label":"Windows 7","checked":false}]}]', 2);

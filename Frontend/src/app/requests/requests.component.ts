@@ -15,8 +15,10 @@ export class RequestsComponent implements OnInit {
   ngOnInit() {
     this.reqServiceSub = this.reqService.getRequestsProperties().subscribe(
       (data)=>{
-        console.log("Server válasza: ",data);
-        console.log("parzattempt" ,JSON.parse(data[0].json_data));
+        if(data.length>0){
+          console.log("Server válasza: ",data);
+          console.log("parzattempt" ,JSON.parse(data[0].json_data));
+        }       
       }
     );
   }
