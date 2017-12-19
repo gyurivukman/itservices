@@ -1,7 +1,6 @@
 package hu.elte.alkfejl.itservices.controller;
 
 import hu.elte.alkfejl.itservices.model.Service;
-import hu.elte.alkfejl.itservices.repository.ServiceRepository;
 import hu.elte.alkfejl.itservices.service.AuthenticationService;
 import hu.elte.alkfejl.itservices.service.RequestService;
 import hu.elte.alkfejl.itservices.service.Service_service;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -97,7 +95,7 @@ public class ServiceController {
         if(this.authService.validateJwtToken(jwtToken)){
             Service service = this.serv_service.findById(id);
             if(service!=null){
-                Map<String,String> errors = this.reqService.attemptNewServiceRequest(formData,this.authService.getUserFromJwt(jwtToken));
+                Map<String,String> errors = this.reqService.attemptNewServiceRequest(formData,this.authService.getUserFromJwt(jwtToken),this.serv_service.findById(id));
                 res = ResponseEntity.status(errors.isEmpty()?HttpStatus.OK:HttpStatus.BAD_REQUEST).body(errors);
             }else{
                 res = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -105,7 +103,6 @@ public class ServiceController {
         }else{
             res = ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        System.out.println("EZt fogom mondani: "+res);
         return res;
     };
 }

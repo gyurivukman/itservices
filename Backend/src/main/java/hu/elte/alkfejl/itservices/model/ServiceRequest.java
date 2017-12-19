@@ -2,6 +2,7 @@ package hu.elte.alkfejl.itservices.model;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -49,6 +50,9 @@ public class ServiceRequest extends BaseEntity{
     
     @Column(nullable = false)
     private Date dateOfRequest;
+    
+    @ManyToOne(targetEntity = hu.elte.alkfejl.itservices.model.Service.class)
+    private Service requestedService;
     
     public enum State{
         OPENED,IN_PROGRESS,CLOSED,REOPENED,BLOCKED

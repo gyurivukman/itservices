@@ -1,11 +1,11 @@
 package hu.elte.alkfejl.itservices.service;
 
+import org.springframework.stereotype.Service;
+
 /**
  *
  * @author gyuri
  */
+@Service
 public class UserService {
-    public boolean validateUser(String username,String password){
-        return true;
-    }
 }

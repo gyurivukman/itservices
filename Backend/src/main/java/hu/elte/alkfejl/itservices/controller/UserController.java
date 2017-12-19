@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hu.elte.alkfejl.itservices.controller;
 
 import hu.elte.alkfejl.itservices.model.User;
 import hu.elte.alkfejl.itservices.service.AuthenticationService;
 import hu.elte.alkfejl.itservices.service.ModifyCredentialsService;
 import hu.elte.alkfejl.itservices.service.RegistrationService;
+import hu.elte.alkfejl.itservices.service.RequestService;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +12,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -33,6 +32,10 @@ public class UserController {
     
     @Autowired
     private ModifyCredentialsService modifyService;
+    
+    @Autowired 
+    private RequestService reqService;
+
     
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/modify")
@@ -74,5 +77,19 @@ public class UserController {
         }
         
         return ResponseEntity.status(isTokenValid?HttpStatus.OK:HttpStatus.FORBIDDEN).body(body);
+    }
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/requests")
+    @ResponseBody
+    public ResponseEntity getRequests(@RequestHeader("authorization") String jwtToken){
+        System.out.println("VALAMI VAN");
+        ResponseEntity res;
+        
+        if(this.authService.validateJwtToken(jwtToken)){
+            res = ResponseEntity.status(HttpStatus.OK).body(this.reqService.getRequestForUser(this.authService.getUserFromJwt(jwtToken)));
+        }else{
+            res = ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        return res;
     }
 }

@@ -59,7 +59,7 @@ public final class AuthenticationService {
             return false;
         }
     }
-    
+   
     public boolean hasPermission(String username,String permission){
         return this.userRepository.hasPermission(username,permission);
     }

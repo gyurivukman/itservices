@@ -11,6 +11,11 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+
+-- Dumping database structure for itservices
+CREATE DATABASE IF NOT EXISTS `itservices` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `itservices`;
+
 -- Dumping structure for tábla itservices.applicationareas
 CREATE TABLE IF NOT EXISTS `applicationareas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -107,6 +112,17 @@ CREATE TABLE IF NOT EXISTS `services` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
+-- Dumping structure for tábla itservices.services_requests
+CREATE TABLE IF NOT EXISTS `services_requests` (
+  `service_id` int(11) NOT NULL,
+  `requests_id` int(11) NOT NULL,
+  UNIQUE KEY `UK_i8rwcx2j1jbpg120tp3lhxu8p` (`requests_id`),
+  KEY `FK98tulg9awgn29rau1c4ou974` (`service_id`),
+  CONSTRAINT `FK6kv7i61639cpi5uw94iq5mme0` FOREIGN KEY (`requests_id`) REFERENCES `service_requests` (`id`),
+  CONSTRAINT `FK98tulg9awgn29rau1c4ou974` FOREIGN KEY (`service_id`) REFERENCES `services` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Data exporting was unselected.
 -- Dumping structure for tábla itservices.service_requests
 CREATE TABLE IF NOT EXISTS `service_requests` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -115,11 +131,14 @@ CREATE TABLE IF NOT EXISTS `service_requests` (
   `json_data` varchar(255) NOT NULL,
   `state` varchar(255) NOT NULL,
   `assigned_operator_id` int(11) DEFAULT NULL,
+  `requested_service_id` int(11) DEFAULT NULL,
   `requester_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK2v5vem55vmoce8y76cwr7rs0m` (`assigned_operator_id`),
+  KEY `FK95mk4sfxd7osn0oe4n8wruu25` (`requested_service_id`),
   KEY `FKkx14c900w6r39qv0c99ahk223` (`requester_id`),
   CONSTRAINT `FK2v5vem55vmoce8y76cwr7rs0m` FOREIGN KEY (`assigned_operator_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `FK95mk4sfxd7osn0oe4n8wruu25` FOREIGN KEY (`requested_service_id`) REFERENCES `services` (`id`),
   CONSTRAINT `FKkx14c900w6r39qv0c99ahk223` FOREIGN KEY (`requester_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

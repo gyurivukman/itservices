@@ -1,9 +1,11 @@
 
 package hu.elte.alkfejl.itservices.service;
 
+import hu.elte.alkfejl.itservices.model.ServiceRequest;
 import hu.elte.alkfejl.itservices.model.User;
 import hu.elte.alkfejl.itservices.repository.ServiceRequestRepository;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +19,15 @@ public class RequestService {
     @Autowired
     private ServiceRequestRepository requestRepo;
     
-    public Map<String,String> attemptNewServiceRequest(Map<String,String> formdata, User requester){
+    public Map<String,String> attemptNewServiceRequest(Map<String,String> formdata, User requester,
+                                                       hu.elte.alkfejl.itservices.model.Service service){
         Map<String,String> errors = new HashMap<>();
         //valami validáció.
-        this.requestRepo.addServiceRequest(formdata,requester);
+        this.requestRepo.addServiceRequest(formdata,requester,service);
         return errors;
+    }
+    
+    public List<ServiceRequest> getRequestForUser(User user){
+        return this.requestRepo.findByUser(user);
     }
 }

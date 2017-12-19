@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import java.util.List;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -43,5 +45,8 @@ public class Service extends BaseEntity{
     
     @Column(length=4000)
     private String requestForm;
+    
+    @OneToMany(targetEntity = ServiceRequest.class)
+    private List<ServiceRequest> requests;
     
 }

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AuthenticationModule } from './authentication-module/authentication.module';
@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { HomepageComponent } from './homepage-component/homepage-component.component';
 import { AccountViewComponent} from './account-view-component/account-view-component.component';
 import { AccountModifyService } from './account-modify/account-modify.service';
+import { RequestsService } from './requests-service/requests-service.service';
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
@@ -67,7 +68,7 @@ import { OperatorViewComponent } from './operator-view/operator-view.component';
     MatRadioModule,
     ReactiveFormsModule
   ],
-  providers: [ServiceData_Service, AccountModifyService],
+  providers: [ServiceData_Service, AccountModifyService,RequestsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

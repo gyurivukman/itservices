@@ -17,7 +17,7 @@
         </mat-form-field>
 
         <div class="center-horizontally checkbox uniform-width" *ngSwitchCase="'checkbox'">
-          <mat-checkbox name={{formrow.name}} #{{formrow.name}} ngModel [checked]=formrow.checked>{{formrow.label}}</mat-checkbox>
+          <mat-checkbox name={{formrow.name}} #{{formrow.name}} [(ngModel)]=formrow.checked >{{formrow.label}}</mat-checkbox>
         </div>
 
         <div class="center-horizontally radiogroup uniform-width" *ngSwitchCase="'radiogroup'">

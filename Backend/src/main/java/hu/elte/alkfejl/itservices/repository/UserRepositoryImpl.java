@@ -50,6 +50,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
         return hasPermission;
     }
     
+    @Override
     public User findByUsername(String username){
         try{
             TypedQuery<User> usernameQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.username = :name", User.class).setParameter("name", username);
@@ -75,6 +76,17 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
         try{
             TypedQuery<User> employeeIdQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.employeeid = :employeeid", User.class).setParameter("employeeid", employeeId);
             User user = employeeIdQuery.getSingleResult();        
+            return user;
+        }catch(NoResultException e){
+            return null;
+        }
+    }
+    
+    @Override
+    public User findById(int id){
+        try{
+            TypedQuery<User> userIdQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.id = :id", User.class).setParameter("id", id);
+            User user = userIdQuery.getSingleResult();        
             return user;
         }catch(NoResultException e){
             return null;

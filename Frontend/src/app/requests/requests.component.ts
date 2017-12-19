@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
+import { RequestsService }   from '../requests-service/requests-service.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-requests',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequestsComponent implements OnInit {
 
-  constructor() { }
+  private reqServiceSub:Subscription
+  constructor(private reqService:RequestsService) { }
 
   ngOnInit() {
+    this.reqServiceSub = this.reqService.getRequestsProperties().subscribe(
+      (data)=>{
+        console.log("Server válasza: ",data);
+        console.log("parzattempt" ,JSON.parse(data[0].json_data));
+      }
+    );
   }
 
+  ngOnDestroy(){
+    this.reqServiceSub.unsubscribe();
+  }
 }

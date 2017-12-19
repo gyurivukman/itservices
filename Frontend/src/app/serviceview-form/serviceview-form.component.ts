@@ -39,14 +39,14 @@ export class ServiceviewFormComponent implements OnInit {
   }
 
   submitRequest(rf:NgForm){
-    console.log(rf.value);
-    /*this.service.postServiceRequest(this.serviceid,rf.value).subscribe(res=>{
+//    ^^console.log(rf.value);
+    this.service.postServiceRequest(this.serviceid,rf.value).subscribe(res=>{
         console.log("válasz:")
         console.log(res);
       },err=>{
         console.log("Something bad happened! ",err);
       }
-    );*/
+    );
   }
   
 }
