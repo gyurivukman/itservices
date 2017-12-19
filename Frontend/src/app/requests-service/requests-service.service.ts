@@ -7,7 +7,7 @@ export class RequestsService {
 
   constructor(private http:HttpClient) {}
 
-  getRequestsProperties():Observable<any>{
+  getRequestsMetadata():Observable<any>{
     let headers = new HttpHeaders({
       'authorization':localStorage.getItem('jwtToken')
     })

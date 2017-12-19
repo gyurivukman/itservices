@@ -1,3 +1,26 @@
-<div id="content">
-  requests works!
+<div id="requests-list-wrapper" *ngIf="requestMetadata">
+    <div class="request-metadata" *ngFor="let data of requestMetadata">
+        <div class="request-metadata-title-container">
+            <span class="metadata-requested-service">{{data.requestedService}}</span>
+        </div>
+        <div class="request-metadata-properties">
+            <span class="metadata-pair">
+                <span class="metadata-key">ID: </span>
+                <span class="metadata-value">{{data.id}}</span>
+            </span>
+            <span class="metadata-pair">
+                <span class="metadata-key">Requested At: </span>
+                <span class="metadata-value">{{data.dateOfRequest | date:'HH:MM , dd MMM yyyy'}}</span>
+            </span>
+            <span class="metadata-pair">
+                <span class="metadata-key">State: </span>
+                <span class="metadata-value">{{data.state}}</span>
+            </span>
+            <span class="metadata-pair">
+                <span class="metadata-key">Assigned Operator: </span>
+                <span class="metadata-value">{{data.assignedOperator}}</span>
+            </span>
+        </div>
+    </div>
 </div>
+<span *ngIf="!requestMetadata">You have no active requests!</span>

@@ -14,5 +14,6 @@ public interface ServiceRequestRepositoryCustom {
     public ServiceRequest findById(int id);
     public List<ServiceRequest> findByServiceId(int id);
     public List<ServiceRequest> findByUser(User user);
+    public List<Map<Object,Object>> getRequestsMetadataForUser(User user);
     public void addServiceRequest(Map<String,String> formData,User requester,Service service);
 }

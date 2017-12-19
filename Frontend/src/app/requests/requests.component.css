@@ -1,7 +1,53 @@
-.content {
+#requests-list-wrapper {
     position: relative;
     width:100%;
     max-width:100%;
     height:100%;
     max-height:100%;
+
+    overflow:auto;
+    background:#9d7fc1;;
+}
+
+.request-metadata{
+    position:relative;
+    width:95%;
+    max-width:95%;
+    background:white;
+    margin: 10px auto 0px auto;
+    display:flex;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    
+}
+.metadata-requested-service{
+    position:relative;
+    font-family:Roboto;
+    font-size:25px;
+    top:5px;
+    left:5px;
+}
+
+.request-metadata-title-container{
+    width:35%;
+    max-width:35%;
+    text-align:left;
+    border-right:2px solid #4A148C;
+}
+.request-metadata-properties{
+    width:65%;
+    max-width:65%;
+    height:100%;
+    max-height:100%;
+    display:flex;
+    justify-content:space-around;
+    flex-wrap:wrap;
+}
+.metadata-pair{
+    margin-right:10px;
+    width:40%;
+}
+
+.metadata-key{
+    font-weight:bold;
+    margin-right:10px;
 }

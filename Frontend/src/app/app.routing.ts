@@ -11,7 +11,8 @@ import { ServiceviewComponent } from './serviceview/serviceview.component';
 import { ServiceviewFormComponent }    from './serviceview-form/serviceview-form.component';
 import { ServicedescriptionComponent } from './serviceview-description/serviceview-description.component';
 import { AdminViewComponent }     from './admin-view/admin-view.component';
-import  {OperatorViewComponent }  from './operator-view/operator-view.component';
+import { OperatorViewComponent }  from './operator-view/operator-view.component';
+import { RequestViewComponent }   from './request-view/request-view.component'
 
 const routes: Routes = [
   { path: '',component:BaseLayoutComponent, canActivate:[AuthService], 
@@ -28,6 +29,7 @@ const routes: Routes = [
         ]
       },
       { path: 'requests',component:RequestsComponent,pathMatch:'full'},
+      { path: 'requests/:requestid',component:RequestViewComponent,pathMatch:'full'},
       { path: 'admin',component:AdminViewComponent,pathMatch:'full'},
       { path: 'operator',component:OperatorViewComponent,pathMatch:'full'},
     ]},

@@ -34,6 +34,7 @@ import { ServicedescriptionComponent } from './serviceview-description/servicevi
 import {ServiceData_Service} from './serviceData-service/service-data.service';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 import { OperatorViewComponent } from './operator-view/operator-view.component';
+import { RequestViewComponent } from './request-view/request-view.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { OperatorViewComponent } from './operator-view/operator-view.component';
     ServicedescriptionComponent,
     AdminViewComponent,
     OperatorViewComponent,
+    RequestViewComponent,
   ],
   imports: [
     BrowserModule,

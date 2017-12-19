@@ -4,6 +4,8 @@ import hu.elte.alkfejl.itservices.model.Service;
 import hu.elte.alkfejl.itservices.model.ServiceRequest;
 import hu.elte.alkfejl.itservices.model.User;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
@@ -68,6 +70,33 @@ public class ServiceRequestRepositoryImpl implements ServiceRequestRepositoryCus
             TypedQuery<ServiceRequest> requestQuery = entityManager.createQuery("SELECT rq FROM ServiceRequest rq WHERE rq.requester = :user", ServiceRequest.class).setParameter("user", user);
             return requestQuery.getResultList();
         }catch(NoResultException e){
+            return null;
+        }
+    }
+    @Override
+    public List<Map<Object,Object>> getRequestsMetadataForUser(User user){
+        try{
+            List<Map<Object,Object>> result = new LinkedList<>();
+            TypedQuery<Object[]> metadataQuery = entityManager.createQuery("SELECT rq.id,rq.state,rq.dateOfRequest,rql.surname,rql.forename,rq.requestedService.name FROM ServiceRequest rq LEFT OUTER JOIN rq.assignedOperator rql WHERE rq.requester = :user", Object[].class).setParameter("user", user);
+            List<Object[]> queryResultList = metadataQuery.getResultList();
+            for(Object[] obj:queryResultList){
+                Map<Object,Object> tmp = new HashMap<>();
+                tmp.put("id", obj[0]);
+                tmp.put("state",obj[1]);
+                
+                //tmp.put("requester", obj[1]);
+                //tmp.put("assignedOperator",obj[2]);
+                //tmp.put("state",obj[3]);
+                tmp.put("dateOfRequest",obj[2]);
+                tmp.put("assignedOperator",obj[3]==null?"None":obj[3]+" "+obj[4]);
+                tmp.put("requestedService",obj[5]);
+                result.add(tmp);
+            }
+            return result;
+        }catch(NoResultException e){
+            return null;
+        }catch(Exception e){
+            System.out.println("Something awful has happened in ServiceRequestRepository "+e);
             return null;
         }
     }

@@ -27,7 +27,9 @@ public class RequestService {
         return errors;
     }
     
-    public List<ServiceRequest> getRequestForUser(User user){
-        return this.requestRepo.findByUser(user);
+    public List<Map<Object,Object>> getRequestsMetadataForUser(User user){
+        return this.requestRepo.getRequestsMetadataForUser(user);
     }
+    
+    
 }

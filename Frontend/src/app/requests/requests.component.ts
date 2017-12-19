@@ -10,15 +10,14 @@ import { Subscription } from 'rxjs/Subscription';
 export class RequestsComponent implements OnInit {
 
   private reqServiceSub:Subscription
-  constructor(private reqService:RequestsService) { }
-
+  private requestMetadata;
+  constructor(private reqService:RequestsService) {}
   ngOnInit() {
-    this.reqServiceSub = this.reqService.getRequestsProperties().subscribe(
+    this.reqServiceSub = this.reqService.getRequestsMetadata().subscribe(
       (data)=>{
         if(data.length>0){
-          console.log("Server válasza: ",data);
-          console.log("parzattempt" ,JSON.parse(data[0].json_data));
-        }       
+          this.requestMetadata = data;
+        }      
       }
     );
   }

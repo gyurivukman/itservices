@@ -6,6 +6,7 @@ import hu.elte.alkfejl.itservices.service.ModifyCredentialsService;
 import hu.elte.alkfejl.itservices.service.RegistrationService;
 import hu.elte.alkfejl.itservices.service.RequestService;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -82,11 +83,13 @@ public class UserController {
     @GetMapping("/requests")
     @ResponseBody
     public ResponseEntity getRequests(@RequestHeader("authorization") String jwtToken){
-        System.out.println("VALAMI VAN");
         ResponseEntity res;
         
         if(this.authService.validateJwtToken(jwtToken)){
-            res = ResponseEntity.status(HttpStatus.OK).body(this.reqService.getRequestForUser(this.authService.getUserFromJwt(jwtToken)));
+            List<Map<Object,Object>> metadata = this.reqService.getRequestsMetadataForUser(this.authService.getUserFromJwt(jwtToken));
+            res = ResponseEntity.status(HttpStatus.OK).body(metadata);
+            
+            System.out.println("NA,megy vissza valami "+metadata);
         }else{
             res = ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
