@@ -9,6 +9,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import org.springframework.data.jpa.repository.Modifying;
 
 /**
  *
@@ -93,42 +94,62 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
         }
     }
     
+    @Modifying
+    @Transactional
     public void modifyUsername(User user, String newUsername) {
         try {
-            entityManager.createQuery("UPDATE users SET username = \'" + newUsername + "\' WHERE email = :email", User.class)
+            entityManager.createQuery("UPDATE User u SET u.username = :newusername WHERE u.email = :email")
+                .setParameter("newusername", newUsername)
                 .setParameter("email", user.getEmail())
                 .executeUpdate();
         } catch(Exception e){
+            System.out.println("Username update exception: " + e.getMessage());
+            e.printStackTrace();
             return;
         } 
     }
     
+    @Modifying
+    @Transactional
     public void modifyPassword(User user, String newPassword) {
         try {
-            entityManager.createQuery("UPDATE users SET password = \'" + newPassword + "\' WHERE email = :email", User.class)
+            entityManager.createQuery("UPDATE User u SET u.password = :newpassword WHERE u.email = :email", User.class)
+                .setParameter("newpassword", newPassword)
                 .setParameter("email", user.getEmail())
                 .executeUpdate(); 
         } catch(Exception e){
+            System.out.println("Password update exception: " + e.getMessage());
+            e.printStackTrace();
             return;
         }
     }
     
+    @Modifying
+    @Transactional
     public void modifyForename(User user, String newForename) {
         try {
-            entityManager.createQuery("UPDATE users SET forename = \'" + newForename + "\' WHERE email = :email", User.class)
+            entityManager.createQuery("UPDATE User u SET u.forename = :newforename WHERE u.email = :email", User.class)
+                .setParameter("newpassword", newForename)
                 .setParameter("email", user.getEmail())
                 .executeUpdate();
         } catch(Exception e){
+            System.out.println("Forename update exception: " + e.getMessage());
+            e.printStackTrace();
             return;
         }     
     }
     
+    @Modifying
+    @Transactional
     public void modifySurname(User user, String newSurname) {
         try {
-            entityManager.createQuery("UPDATE users SET surname = \'" + newSurname + "\' WHERE email = :email", User.class)
+            entityManager.createQuery("UPDATE User u SET u.surname = :newsurname' WHERE u.email = :email", User.class)
+                .setParameter("newsurname", newSurname)
                 .setParameter("email", user.getEmail())
                 .executeUpdate();
         } catch(Exception e){
+            System.out.println("Surname update exception: " + e.getMessage());
+            e.printStackTrace();
             return;
         }     
     }

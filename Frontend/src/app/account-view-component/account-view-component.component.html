@@ -41,12 +41,8 @@
 
       <mat-form-field class="mat-form-field">
         <input name="currentpassword" matInput type="password" placeholder="Current Password" required ngModel #currentpassword="ngModel">
+        <mat-hint *ngIf="currentPasswordError" class="form-field-errortext">{{currentPasswordError}}</mat-hint>
       </mat-form-field>
-
-      <div id="confirm-error-container" class="mat-typography center-confirm-element">
-        <mat-icon *ngIf="modifyErrors" svgIcon="warning-triangle"></mat-icon>
-        <span *ngIf="modifyErrors" id="login-error-text" class="mat-body-2">{{modifyErrors}}</span>
-      </div>
 
       <div id="confirm-button-container" class="center-confirm-element">
         <button mat-raised-button color="primary" type="submit" label="Confirm">Confirm</button>

@@ -19,6 +19,7 @@ import { MatTooltipModule } from '@angular/material';
 export class AccountViewComponent implements OnInit {
   private modifyErrors;
   private data;
+  private currentPasswordError;
 
   constructor(private accountModifyService: AccountModifyService, private router: Router, private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) { }
 
@@ -28,6 +29,10 @@ export class AccountViewComponent implements OnInit {
     this.iconRegistry.addSvgIcon('warning-triangle',this.sanitizer.bypassSecurityTrustResourceUrl('./assets/icons/warning.svg'));
     this.iconRegistry.addSvgIcon('information',this.sanitizer.bypassSecurityTrustResourceUrl('./assets/icons/information.svg'));
     this.attemptGetUser();
+  }
+
+  logout(){
+    this.accountModifyService.logout();
   }
 
   doPasswordsMatch(pw1,pw2){
@@ -50,31 +55,38 @@ export class AccountViewComponent implements OnInit {
     console.log(modifyForm.value);
     this.data.token = localStorage.getItem('jwtToken');
     if (modifyForm.value.username) this.data.username = modifyForm.value.username;
-    this.data.password = modifyForm.value.password;
+    this.data.password = modifyForm.value.password; // backend wont modify pw if empty
     if (modifyForm.value.forename) this.data.forename = modifyForm.value.forename;
     if (modifyForm.value.surname) this.data.surname = modifyForm.value.surname;
     this.accountModifyService.modify(this.data).subscribe(
       res => {
-        this.router.navigate(['']);
+        console.log("res: ");
+        console.log(res);
       },
       err => {
         this.modifyErrors = err.error;
         console.log("err: ");
         console.log(this.modifyErrors);
+        if(this.data.username != modifyForm.value.username) {
+          console.log("logging out");
+          this.logout(); // to avoid bugs (primarily because jwt is generated for username)
+          // TODO this never gets called for some reason
+        } 
       }
     )
   }
 
 
   attemptModify(modifyForm: NgForm) {
-    console.log("logging in with: " + this.data.username + modifyForm.value.currentpassword)
+    console.log("logging in with: " + this.data.username + ", " + modifyForm.value.currentpassword)
     this.accountModifyService.login(this.data.username, modifyForm.value.currentpassword).subscribe(
       res => {
+        this.currentPasswordError = null;
         this.doModify(modifyForm);
       },
       err => {
         console.log("Invalid current pw!");
-        this.modifyErrors = "Invalid current password!";
+        this.currentPasswordError = "Invalid current password!";
       }
     )
   }

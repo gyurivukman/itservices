@@ -11,6 +11,10 @@
     right:0%;
 }
 
+.form-field-errortext{
+    color:red;
+}
+
 #change-header{
     border-bottom:1px solid #4A148C;
     width:85%;
@@ -44,19 +48,6 @@
 .center-confirm-element{
     margin-left:auto;
     margin-right:auto;
-}
-
-#confirm-error-container{
-    height:15px;
-    width:85%;
-    max-width:85%;
-    margin-top:70px;
-}
-#confirm-error-text{
-    font-size:12px;
-    color:red;
-
-    margin-left:10px;
 }
 
 #input-fields-container{
