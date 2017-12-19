@@ -18,5 +18,5 @@ public interface ServiceRequestRepository extends CrudRepository<ServiceRequest,
     
     public List<Map<Object,Object>> getRequestsMetadataForUser(User user);
     
-    public void addServiceRequest(Map<String,String> formData,User requester,Service service);
+    public int addServiceRequest(Map<String,String> formData,User requester,Service service);
 }

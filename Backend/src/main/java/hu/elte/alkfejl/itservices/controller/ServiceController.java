@@ -95,8 +95,10 @@ public class ServiceController {
         if(this.authService.validateJwtToken(jwtToken)){
             Service service = this.serv_service.findById(id);
             if(service!=null){
-                Map<String,String> errors = this.reqService.attemptNewServiceRequest(formData,this.authService.getUserFromJwt(jwtToken),this.serv_service.findById(id));
-                res = ResponseEntity.status(errors.isEmpty()?HttpStatus.OK:HttpStatus.BAD_REQUEST).body(errors);
+                Map<String,Map<String,String>> ormResponse = this.reqService.attemptNewServiceRequest(formData,this.authService.getUserFromJwt(jwtToken),this.serv_service.findById(id));
+                Map<String,String> errors = ormResponse.get("errors");
+                boolean errorless = errors.isEmpty();
+                res = ResponseEntity.status(errorless?HttpStatus.OK:HttpStatus.BAD_REQUEST).body(errorless?ormResponse.get("newRequestIDdata"):errors);
             }else{
                 res = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }

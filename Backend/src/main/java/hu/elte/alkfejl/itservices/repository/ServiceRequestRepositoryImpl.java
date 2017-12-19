@@ -41,7 +41,7 @@ public class ServiceRequestRepositoryImpl implements ServiceRequestRepositoryCus
 
     @Override
     @Transactional
-    public void addServiceRequest(Map<String, String> formData, User requester, Service service) {
+    public int addServiceRequest(Map<String, String> formData, User requester, Service service) {
         StringBuilder sb = new StringBuilder("{");
         
         for(Map.Entry<String,String> entry:formData.entrySet()){
@@ -62,6 +62,8 @@ public class ServiceRequestRepositoryImpl implements ServiceRequestRepositoryCus
         
         this.entityManager.persist(sv);
         this.entityManager.flush();
+        System.out.println("id of new req "+sv.getId());
+        return sv.getId();
     }
     
     @Override
@@ -83,10 +85,6 @@ public class ServiceRequestRepositoryImpl implements ServiceRequestRepositoryCus
                 Map<Object,Object> tmp = new HashMap<>();
                 tmp.put("id", obj[0]);
                 tmp.put("state",obj[1]);
-                
-                //tmp.put("requester", obj[1]);
-                //tmp.put("assignedOperator",obj[2]);
-                //tmp.put("state",obj[3]);
                 tmp.put("dateOfRequest",obj[2]);
                 tmp.put("assignedOperator",obj[3]==null?"None":obj[3]+" "+obj[4]);
                 tmp.put("requestedService",obj[5]);

@@ -19,17 +19,21 @@ public class RequestService {
     @Autowired
     private ServiceRequestRepository requestRepo;
     
-    public Map<String,String> attemptNewServiceRequest(Map<String,String> formdata, User requester,
+    public Map<String,Map<String,String>> attemptNewServiceRequest(Map<String,String> formdata, User requester,
                                                        hu.elte.alkfejl.itservices.model.Service service){
-        Map<String,String> errors = new HashMap<>();
+        Map<String,Map<String,String>> ormResponse = new HashMap<>();
+        ormResponse.put("errors", new HashMap<String,String>());
         //valami validáció.
-        this.requestRepo.addServiceRequest(formdata,requester,service);
-        return errors;
+        Map<String,String> newRequestIDMap = new HashMap<>();
+        newRequestIDMap.put("id", Integer.toString(this.requestRepo.addServiceRequest(formdata,requester,service)));
+        ormResponse.put("newRequestIDdata", newRequestIDMap);
+        
+        return ormResponse;
+        
     }
     
     public List<Map<Object,Object>> getRequestsMetadataForUser(User user){
         return this.requestRepo.getRequestsMetadataForUser(user);
     }
-    
     
 }
