@@ -20,6 +20,7 @@ export class AccountViewComponent implements OnInit {
   private modifyErrors;
   private data;
   private currentPasswordError;
+  private originalUsername: String;
 
   constructor(private accountModifyService: AccountModifyService, private router: Router, private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) { }
 
@@ -43,6 +44,7 @@ export class AccountViewComponent implements OnInit {
     this.accountModifyService.getUser().subscribe(
       res => {
         this.data = res;
+        this.originalUsername = this.data.username;
         console.log(this.data);
       },
       err => {
@@ -67,7 +69,11 @@ export class AccountViewComponent implements OnInit {
         this.modifyErrors = err.error;
         console.log("err: ");
         console.log(this.modifyErrors);
-        if(this.data.username != modifyForm.value.username) {
+        console.log("err JSON: " + JSON.stringify(err));
+        console.log("stored uname: " + this.originalUsername);
+        console.log("new username: " + modifyForm.value.username);
+        console.log("status: " + err.status);
+        if(err.status == 200 && (this.originalUsername != modifyForm.value.username)) { // 200 OK
           console.log("logging out");
           this.logout(); // to avoid bugs (primarily because jwt is generated for username)
           // TODO this never gets called for some reason
@@ -79,7 +85,7 @@ export class AccountViewComponent implements OnInit {
 
   attemptModify(modifyForm: NgForm) {
     console.log("logging in with: " + this.data.username + ", " + modifyForm.value.currentpassword)
-    this.accountModifyService.login(this.data.username, modifyForm.value.currentpassword).subscribe(
+    this.accountModifyService.login(this.originalUsername, modifyForm.value.currentpassword).subscribe(
       res => {
         this.currentPasswordError = null;
         this.doModify(modifyForm);

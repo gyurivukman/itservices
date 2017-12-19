@@ -113,7 +113,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
     @Transactional
     public void modifyPassword(User user, String newPassword) {
         try {
-            entityManager.createQuery("UPDATE User u SET u.password = :newpassword WHERE u.email = :email", User.class)
+            entityManager.createQuery("UPDATE User u SET u.password = :newpassword WHERE u.email = :email")
                 .setParameter("newpassword", newPassword)
                 .setParameter("email", user.getEmail())
                 .executeUpdate(); 
@@ -128,8 +128,8 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
     @Transactional
     public void modifyForename(User user, String newForename) {
         try {
-            entityManager.createQuery("UPDATE User u SET u.forename = :newforename WHERE u.email = :email", User.class)
-                .setParameter("newpassword", newForename)
+            entityManager.createQuery("UPDATE User u SET u.forename = :newforename WHERE u.email = :email")
+                .setParameter("newforename", newForename)
                 .setParameter("email", user.getEmail())
                 .executeUpdate();
         } catch(Exception e){
@@ -143,7 +143,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
     @Transactional
     public void modifySurname(User user, String newSurname) {
         try {
-            entityManager.createQuery("UPDATE User u SET u.surname = :newsurname' WHERE u.email = :email", User.class)
+            entityManager.createQuery("UPDATE User u SET u.surname = :newsurname WHERE u.email = :email")
                 .setParameter("newsurname", newSurname)
                 .setParameter("email", user.getEmail())
                 .executeUpdate();

@@ -22,11 +22,14 @@ public class ModifyCredentialsService {
     private UserRepository userRepository;
     
     public HashMap<String,String> attemptUserModification(User oldUser, Map<String,String> userData){
-        HashMap<String,String> errors = validateUserData(userData);
-        
+        HashMap<String,String> errors = validateUserDataFormat(userData);
         if(errors.isEmpty()) {
             if(!oldUser.getUsername().equals(userData.get("username"))) {
-                userRepository.modifyUsername(oldUser, userData.get("username"));
+                if(!checkUsernameExists(userData.get("username"))) {
+                    userRepository.modifyUsername(oldUser, userData.get("username"));
+                } else {
+                    errors.put("username", "Username already exists!");
+                }
             }
             if(!oldUser.getPassword().equals(userData.get("password")) && !userData.get("password").equals("")) {
                 userRepository.modifyPassword(oldUser, userData.get("password"));
@@ -42,12 +45,15 @@ public class ModifyCredentialsService {
         return errors;
     }
     
-    private HashMap<String,String> validateUserData(Map<String,String> userData){
+    private boolean checkUsernameExists(String username) {
+        return this.userRepository.findByUsername(username)!=null;
+    }
+    
+    private HashMap<String,String> validateUserDataFormat(Map<String,String> userData){
         HashMap<String,String> errors = new HashMap<>();
         
         if(!UserCredentialFormatValidator.validateUserNameFormat(userData.get("username"))) errors.put("username", "Invalid username format!");
         //Username must be 5-20 characters long, and can only contain lower and uppercase letters
-        else if(this.userRepository.findByUsername(userData.get("username"))!=null) errors.put("username","Username already exists!");
         
         if(!userData.get("password").equals("") && !UserCredentialFormatValidator.validatePasswordFormat(userData.get("password"))) errors.put("password", "Invalid password format!");
         //Password must be 8-20 characters long, have 1 uppercase letter, 1 lowercase letter and 1 number

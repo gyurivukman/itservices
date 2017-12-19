@@ -70,7 +70,8 @@ import { RequestViewComponent } from './request-view/request-view.component';
     FormsModule,
     MatRadioModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTooltipModule
   ],
   providers: [ServiceData_Service, AccountModifyService,RequestsService],
   bootstrap: [AppComponent]
