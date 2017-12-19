@@ -25,6 +25,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTooltipModule } from '@angular/material';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { RequestsComponent } from './requests/requests.component';
 import { ServiceviewComponent } from './serviceview/serviceview.component';
@@ -68,7 +69,8 @@ import { RequestViewComponent } from './request-view/request-view.component';
     MatCardModule,MatSelectModule,
     FormsModule,
     MatRadioModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   providers: [ServiceData_Service, AccountModifyService,RequestsService],
   bootstrap: [AppComponent]

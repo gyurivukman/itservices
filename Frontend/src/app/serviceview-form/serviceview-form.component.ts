@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { ServiceData_Service } from '../serviceData-service/service-data.service';
 import { NgForm } from '@angular/forms';
 import { NgSwitch } from '@angular/common';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-serviceview-form',
@@ -17,7 +18,8 @@ export class ServiceviewFormComponent implements OnInit {
 
   private serviceFormData;
 
-  constructor(private service:ServiceData_Service,private router:Router,private route:ActivatedRoute) {
+  constructor(private service:ServiceData_Service,public snackBar: MatSnackBar,
+              private router:Router,private route:ActivatedRoute) {
     
     this.route.parent.params.subscribe(params=>{
       this.serviceid = params['serviceid'];
@@ -39,10 +41,11 @@ export class ServiceviewFormComponent implements OnInit {
   }
 
   submitRequest(rf:NgForm){
-//    ^^console.log(rf.value);
     this.service.postServiceRequest(this.serviceid,rf.value).subscribe(res=>{
-        console.log("válasz:")
-        console.log(res);
+        this.snackBar.open('Your service request has been sent!', 'OK', {
+          duration: 3000,
+        });
+        this.router.navigate(['']);
       },err=>{
         console.log("Something bad happened! ",err);
       }
