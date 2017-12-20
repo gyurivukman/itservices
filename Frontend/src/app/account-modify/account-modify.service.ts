@@ -18,6 +18,11 @@ export class AccountModifyService {
     return false;
   }
 
+  logout(){
+    localStorage.removeItem('jwtToken');
+    this.router.navigate(['login']);
+  }
+
   login(username, password):Observable<Object>{
     const targetUrl = 'http://localhost:8080/auth/login';
     const body = {username, password};

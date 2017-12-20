@@ -1,0 +1,26 @@
+Kovetelmenyrendszer
+De szabadon ertelmezi
+Nem szigoruan
+
+Azt mondja nem baj ha nincs sok-sok, nem baj ha nem lehet 3 tablat szerkeszteni
+Dokumentaciot elvarja
+Adatbazis terv kene (uml) [done]
+Projektötlet [done]
+Amit nagyon szeretne: vegpont tervek es leirasok (backend milyen szolgáltatásokat nyújt, pl GET /issues - lekeri a felhasznalohoz tartozo issuekat) [done]
+Milyen tipusu a bemenet es kimenet [done]
+Tobbi szempont kevesbe fontos a backend doksibol
+Hasznalati diagram fontos a prototipusnal [mondjuk done]
+Teszteseteknek orulne
+Felhasznaloi dokumentacio nem kotelezo / minimális eleg [done]
+Legyen par diagram meg keves szoveg es mar orul a doksinak
+Design elvaras nincs de ertekeli
+Funkció > design
+
+kliensoldali szolgáltatások listája, rövid leírással
+kapcsolat a szerverrel
+állapotdiagram (ha szükséges)
+egy funkció folyamatának leírása, azaz mi történik kattintástól a visszajelzésig
+tesztelés
+felhasználói dokumentáció
+
+1280x800

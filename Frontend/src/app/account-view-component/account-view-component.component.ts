@@ -19,6 +19,8 @@ import { MatTooltipModule } from '@angular/material';
 export class AccountViewComponent implements OnInit {
   private modifyErrors;
   private data;
+  private currentPasswordError;
+  private originalUsername: String;
 
   constructor(private accountModifyService: AccountModifyService, private router: Router, private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) { }
 
@@ -30,6 +32,10 @@ export class AccountViewComponent implements OnInit {
     this.attemptGetUser();
   }
 
+  logout(){
+    this.accountModifyService.logout();
+  }
+
   doPasswordsMatch(pw1,pw2){
     return pw1===pw2 && pw1!=null && pw2!=null;
   }
@@ -38,6 +44,7 @@ export class AccountViewComponent implements OnInit {
     this.accountModifyService.getUser().subscribe(
       res => {
         this.data = res;
+        this.originalUsername = this.data.username;
       },
       err => {
         //this.loginerror = "Invalid username or password!";
@@ -49,31 +56,42 @@ export class AccountViewComponent implements OnInit {
     console.log(modifyForm.value);
     this.data.token = localStorage.getItem('jwtToken');
     if (modifyForm.value.username) this.data.username = modifyForm.value.username;
-    this.data.password = modifyForm.value.password;
+    this.data.password = modifyForm.value.password; // backend wont modify pw if empty
     if (modifyForm.value.forename) this.data.forename = modifyForm.value.forename;
     if (modifyForm.value.surname) this.data.surname = modifyForm.value.surname;
     this.accountModifyService.modify(this.data).subscribe(
       res => {
-        this.router.navigate(['']);
+        console.log("res: ");
+        console.log(res);
       },
       err => {
         this.modifyErrors = err.error;
         console.log("err: ");
         console.log(this.modifyErrors);
+        console.log("err JSON: " + JSON.stringify(err));
+        console.log("stored uname: " + this.originalUsername);
+        console.log("new username: " + modifyForm.value.username);
+        console.log("status: " + err.status);
+        if(err.status == 200 && (this.originalUsername != modifyForm.value.username)) { // 200 OK
+          console.log("logging out");
+          this.logout(); // to avoid bugs (primarily because jwt is generated for username)
+          // TODO this never gets called for some reason
+        } 
       }
     )
   }
 
 
   attemptModify(modifyForm: NgForm) {
-    console.log("logging in with: " + this.data.username + modifyForm.value.currentpassword)
-    this.accountModifyService.login(this.data.username, modifyForm.value.currentpassword).subscribe(
+    console.log("logging in with: " + this.data.username + ", " + modifyForm.value.currentpassword)
+    this.accountModifyService.login(this.originalUsername, modifyForm.value.currentpassword).subscribe(
       res => {
+        this.currentPasswordError = null;
         this.doModify(modifyForm);
       },
       err => {
         console.log("Invalid current pw!");
-        this.modifyErrors = "Invalid current password!";
+        this.currentPasswordError = "Invalid current password!";
       }
     )
   }
