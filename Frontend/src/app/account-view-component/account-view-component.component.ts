@@ -53,7 +53,6 @@ export class AccountViewComponent implements OnInit {
   }
 
   private doModify(modifyForm: NgForm) {
-    console.log(modifyForm.value);
     this.data.token = localStorage.getItem('jwtToken');
     if (modifyForm.value.username) this.data.username = modifyForm.value.username;
     this.data.password = modifyForm.value.password; // backend wont modify pw if empty
@@ -61,21 +60,13 @@ export class AccountViewComponent implements OnInit {
     if (modifyForm.value.surname) this.data.surname = modifyForm.value.surname;
     this.accountModifyService.modify(this.data).subscribe(
       res => {
-        console.log("res: ");
-        console.log(res);
+
       },
       err => {
         this.modifyErrors = err.error;
-        console.log("err: ");
-        console.log(this.modifyErrors);
-        console.log("err JSON: " + JSON.stringify(err));
-        console.log("stored uname: " + this.originalUsername);
-        console.log("new username: " + modifyForm.value.username);
-        console.log("status: " + err.status);
-        if(err.status == 200 && (this.originalUsername != modifyForm.value.username)) { // 200 OK
-          console.log("logging out");
+
+        if(err.status == 200 && (this.originalUsername != modifyForm.value.username) && modifyForm.value.username != "") { // 200 OK
           this.logout(); // to avoid bugs (primarily because jwt is generated for username)
-          // TODO this never gets called for some reason
         } 
       }
     )
@@ -83,14 +74,12 @@ export class AccountViewComponent implements OnInit {
 
 
   attemptModify(modifyForm: NgForm) {
-    console.log("logging in with: " + this.data.username + ", " + modifyForm.value.currentpassword)
     this.accountModifyService.login(this.originalUsername, modifyForm.value.currentpassword).subscribe(
       res => {
         this.currentPasswordError = null;
         this.doModify(modifyForm);
       },
       err => {
-        console.log("Invalid current pw!");
         this.currentPasswordError = "Invalid current password!";
       }
     )
