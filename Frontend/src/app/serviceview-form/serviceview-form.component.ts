@@ -46,7 +46,7 @@ export class ServiceviewFormComponent implements OnInit {
           duration: 3000,
         });
         console.log(res);
-        this.router.navigate(['/requests',res.id]);
+        setTimeout(()=>{this.router.navigate(['/requests',res.id]);}, 2000);
       },err=>{
         console.log("Something bad happened! ",err);
       }

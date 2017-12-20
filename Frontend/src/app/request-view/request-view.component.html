@@ -1,11 +1,67 @@
-<div id="request-view-wrapper">
-    <div id="request-properties-container">
-      props
+<div id="request-view-wrapper" *ngIf="requestData">
+  <div id="request-description-container">
+    <div id="request-properties-header">
+      <div id="request-properties-icon-container">
+          <mat-icon *ngIf="iconReady" id="request-properties-icon" svgIcon="request-view-descripton-icon"></mat-icon>
+      </div>
+      <div id="request-properties-servicedata-container">
+        <div id="requested-service-name-container">
+            <span id="requested-service-name">Requested service: {{requestData.requestedService.name}}</span>
+        </div>
+        <div id="request-properties-container">
+          <span class="request-data-property">
+            <span class="request-data-key">Request ID: </span>
+            <span class="request-data-value">{{requestData.id}}</span>
+          </span>
+    
+          <span class="request-data-property">
+            <span class="request-data-key">Assigned Operator: </span>
+            <span class="request-data-value">{{requestData.assignedOperator}}</span>
+          </span>
+    
+          <span class="request-data-property">
+            <span class="request-data-key">Requested At: </span>
+            <span class="request-data-value">{{requestData.dateOfRequest | date:'HH:MM , dd MMM yyyy'}}</span>
+          </span>
+        
+          <span class="request-data-property" *ngIf="averageResponsetime">
+            <span class="request-data-key">Average Responsetime: </span>
+            <span class="request-data-value">{{averageResponsetime}} minutes</span>
+          </span>
+        
+          <span class="request-data-property">
+            <span class="request-data-key">State: </span>
+            <span class="request-data-value">{{requestData.state}}</span>
+          </span>
+        </div>
+      </div>
     </div>
-    <div id="request-operator-controls-container">
-      kontrolsz
-    </div>
-    <div id="request-comments-container">
-      kommentsz 
+    <hr class="request-view-separator">
+    <div id="request-userdata-container" *ngIf="json_data">
+      <div id="userdata-header-container">
+        <span id="userdata-header">Request specifics:</span>
+      </div>
+      <div id="userdata-formdata-container">
+        <span class="request-data-property" *ngFor="let key of json_keys(json_data)">
+          <span class="request-data-key">{{key}}: </span>
+          <span class="request-data-value">{{json_data[key]}}</span>
+        </span>
+      </div>
     </div>
   </div>
+  <div id="request-operator-controls-container">
+    kontrolsz
+  </div>
+  <div id="request-comments-container">
+    <div class="comment" *ngFor="let comment of requestData.comments">
+      komment
+    </div>
+  </div>
+</div>
+
+
+<!-- 
+comments: Array [
+json_data: "{\"username\":\"tosszen\",\"password\":\"kukken\",\"server\":\"db2.it.net\"}"
+state: "OPENED"
+-->

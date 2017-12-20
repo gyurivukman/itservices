@@ -7,11 +7,19 @@ export class RequestsService {
 
   constructor(private http:HttpClient) {}
 
-  getRequestsMetadata():Observable<any>{
+  public getRequestsMetadata():Observable<any>{
     let headers = new HttpHeaders({
       'authorization':localStorage.getItem('jwtToken')
     })
 
     return this.http.get('http://localhost:8080/user/requests',{headers:headers});
+  }
+
+  public getRequestData(id:number):Observable<any>{
+    let headers = new HttpHeaders({
+      'authorization':localStorage.getItem('jwtToken')
+    })
+
+    return this.http.get('http://localhost:8080/requests/'+id,{headers:headers});
   }
 }

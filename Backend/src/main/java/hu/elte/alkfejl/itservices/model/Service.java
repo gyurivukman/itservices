@@ -1,5 +1,6 @@
 package hu.elte.alkfejl.itservices.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.sql.Time;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -46,7 +47,8 @@ public class Service extends BaseEntity{
     @Column(length=4000)
     private String requestForm;
     
-    @OneToMany(targetEntity = ServiceRequest.class)
+    @JsonIgnore
+    @OneToMany(targetEntity = ServiceRequest.class,mappedBy="requestedService")
     private List<ServiceRequest> requests;
     
 }

@@ -33,16 +33,16 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `created_at` datetime NOT NULL,
   `edited_at` datetime NOT NULL,
   `text` varchar(255) NOT NULL,
-  `created_by_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `service_request_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_prcqqctbkmo4906ms4trae88b` (`created_at`),
   UNIQUE KEY `UK_g5yk8flk1xbo40arhfkua23ig` (`edited_at`),
   UNIQUE KEY `UK_3s4mrmfxtlg5gxbsm04mknmms` (`text`),
-  KEY `FKakkm6qfydu7vgnfne1yo0xmed` (`created_by_id`),
-  KEY `FK7jwne7i2vx1r06f2oglxhliy9` (`service_request_id`),
-  CONSTRAINT `FK7jwne7i2vx1r06f2oglxhliy9` FOREIGN KEY (`service_request_id`) REFERENCES `permissions` (`id`),
-  CONSTRAINT `FKakkm6qfydu7vgnfne1yo0xmed` FOREIGN KEY (`created_by_id`) REFERENCES `users` (`id`)
+  KEY `FK8omq0tc18jd43bu5tjh6jvraq` (`user_id`),
+  KEY `FKdppqoxdamf5v991vy62jnhgkn` (`service_request_id`),
+  CONSTRAINT `FK8omq0tc18jd43bu5tjh6jvraq` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `FKdppqoxdamf5v991vy62jnhgkn` FOREIGN KEY (`service_request_id`) REFERENCES `service_requests` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
@@ -112,17 +112,6 @@ CREATE TABLE IF NOT EXISTS `services` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
--- Dumping structure for tábla itservices.services_requests
-CREATE TABLE IF NOT EXISTS `services_requests` (
-  `service_id` int(11) NOT NULL,
-  `requests_id` int(11) NOT NULL,
-  UNIQUE KEY `UK_i8rwcx2j1jbpg120tp3lhxu8p` (`requests_id`),
-  KEY `FK98tulg9awgn29rau1c4ou974` (`service_id`),
-  CONSTRAINT `FK6kv7i61639cpi5uw94iq5mme0` FOREIGN KEY (`requests_id`) REFERENCES `service_requests` (`id`),
-  CONSTRAINT `FK98tulg9awgn29rau1c4ou974` FOREIGN KEY (`service_id`) REFERENCES `services` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Data exporting was unselected.
 -- Dumping structure for tábla itservices.service_requests
 CREATE TABLE IF NOT EXISTS `service_requests` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -130,27 +119,16 @@ CREATE TABLE IF NOT EXISTS `service_requests` (
   `date_of_request` datetime NOT NULL,
   `json_data` varchar(255) NOT NULL,
   `state` varchar(255) NOT NULL,
-  `assigned_operator_id` int(11) DEFAULT NULL,
-  `requested_service_id` int(11) DEFAULT NULL,
+  `assigned_operator` int(11) DEFAULT NULL,
+  `requested_service` int(11) DEFAULT NULL,
   `requester_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK2v5vem55vmoce8y76cwr7rs0m` (`assigned_operator_id`),
-  KEY `FK95mk4sfxd7osn0oe4n8wruu25` (`requested_service_id`),
+  KEY `FKickg1ib2vy5ggm5i2y0kt6hsq` (`assigned_operator`),
+  KEY `FKkrekrkfoyubir9lkgndj78w2w` (`requested_service`),
   KEY `FKkx14c900w6r39qv0c99ahk223` (`requester_id`),
-  CONSTRAINT `FK2v5vem55vmoce8y76cwr7rs0m` FOREIGN KEY (`assigned_operator_id`) REFERENCES `users` (`id`),
-  CONSTRAINT `FK95mk4sfxd7osn0oe4n8wruu25` FOREIGN KEY (`requested_service_id`) REFERENCES `services` (`id`),
+  CONSTRAINT `FKickg1ib2vy5ggm5i2y0kt6hsq` FOREIGN KEY (`assigned_operator`) REFERENCES `users` (`id`),
+  CONSTRAINT `FKkrekrkfoyubir9lkgndj78w2w` FOREIGN KEY (`requested_service`) REFERENCES `services` (`id`),
   CONSTRAINT `FKkx14c900w6r39qv0c99ahk223` FOREIGN KEY (`requester_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Data exporting was unselected.
--- Dumping structure for tábla itservices.service_requests_comments
-CREATE TABLE IF NOT EXISTS `service_requests_comments` (
-  `service_request_id` int(11) NOT NULL,
-  `comments_id` int(11) NOT NULL,
-  UNIQUE KEY `UK_8i2togsr8e6x54qdtiijpwbqq` (`comments_id`),
-  KEY `FKhv6plwle9oinp4m3kres5r76d` (`service_request_id`),
-  CONSTRAINT `FKfwvmwajo9ceb0jj03rpi0mhec` FOREIGN KEY (`comments_id`) REFERENCES `comments` (`id`),
-  CONSTRAINT `FKhv6plwle9oinp4m3kres5r76d` FOREIGN KEY (`service_request_id`) REFERENCES `service_requests` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.

@@ -1,6 +1,8 @@
 package hu.elte.alkfejl.itservices.service;
 
+import hu.elte.alkfejl.itservices.model.ServiceRequest;
 import hu.elte.alkfejl.itservices.model.User;
+import hu.elte.alkfejl.itservices.repository.ServiceRequestRepository;
 import hu.elte.alkfejl.itservices.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,9 @@ public final class AuthenticationService {
     
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired 
+    private ServiceRequestRepository reqRepository;
     
     public String generateJWT(String username){
         String compactJws = Jwts.builder()
@@ -67,5 +72,11 @@ public final class AuthenticationService {
     public User getUserFromJwt(String jwtToken){
         String username  = ((DefaultClaims) Jwts.parser().setSigningKey(SECRET).parse(jwtToken).getBody()).getSubject();
         return this.userRepository.findByUsername(username);
+    }
+    
+    public boolean validateJwtForRequestView(String jwtToken,int requestid){
+        User user = this.getUserFromJwt(jwtToken);
+        ServiceRequest request = this.reqRepository.findOne(requestid);
+        return user.getUsername().equals(request.getRequester().getUsername());
     }
 }

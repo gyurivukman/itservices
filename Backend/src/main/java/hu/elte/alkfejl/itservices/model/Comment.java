@@ -1,9 +1,11 @@
 package hu.elte.alkfejl.itservices.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -30,6 +32,7 @@ public class Comment extends BaseEntity{
     private String text;
     
     @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name="user_id",referencedColumnName="id")
     private User createdBy;
     
     @Column(nullable = false, unique = true)
@@ -38,6 +41,8 @@ public class Comment extends BaseEntity{
     @Column(nullable = false, unique = true)
     private Date editedAt;
     
-    @ManyToOne(targetEntity=Permission.class)
+    @ManyToOne(targetEntity=ServiceRequest.class)
+    @JoinColumn(name="service_request_id",referencedColumnName="id")
+    @JsonIgnore
     private ServiceRequest serviceRequest;
 }

@@ -38,7 +38,6 @@ export class AccountViewComponent implements OnInit {
     this.accountModifyService.getUser().subscribe(
       res => {
         this.data = res;
-        console.log(this.data);
       },
       err => {
         //this.loginerror = "Invalid username or password!";

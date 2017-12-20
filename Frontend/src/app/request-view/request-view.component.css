@@ -1,0 +1,93 @@
+#request-view-wrapper{
+    height:100%;
+    max-height:100%;
+    overflow:auto;
+    width:95%;
+    max-width:95%;
+
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#request-properties-header{ 
+    height:100px;
+    max-height:100px;
+    width:100%;
+    max-width:100%;
+    display:flex;
+}
+
+#request-properties-icon-container{
+    box-shadow:inset 0 0 2px #000000;
+    width:90px !important;
+    max-width:90px !important;
+    height:90px !important;
+    max-height:90px !important;
+    text-align:center;
+    margin: 5px 0 0 5px;
+}
+
+#request-properties-icon{
+    position:relative !important;
+    height:80% !important;
+    max-height:80% !important;
+
+    width:80% !important;
+    max-width: 80% !important;
+    top:10%;
+    margin-left:auto;
+    margin-right:auto;
+}
+#request-properties-servicedata-container{
+    flex:1;
+}
+#requested-service-name-container{
+    position:relative;
+    text-align:center;
+    height:50px;
+    max-height:50px;
+}
+#requested-service-name{
+    font-family:Roboto;
+    font-size:25px;
+}
+#request-properties-container{
+    display:flex;
+    position:relative;
+    justify-content: space-around;
+    height:25%;
+    max-height:25%;
+    margin-top:25px;
+}
+
+.request-data-key{
+    font-weight:bold;
+}
+.request-data-value{
+    margin-left: 5px;
+}
+
+.request-view-separator{
+    border: 0;
+    clear:both;
+    display:block;
+    width: 95%;          
+    background-color:rgba(0,0,0,.25);
+    height: 1px;
+}
+
+#userdata-header-container{
+    text-align:center;
+}
+#userdata-header{
+    font-family:Roboto;
+    font-size:20px;
+}
+#userdata-formdata-container{
+    position:relative;
+    width:100%;
+    max-width:100%;
+    display:flex;
+    justify-content: space-around;
+    margin-top:10px;
+}

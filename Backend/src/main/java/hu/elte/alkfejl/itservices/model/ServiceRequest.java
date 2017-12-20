@@ -8,6 +8,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -35,6 +36,7 @@ public class ServiceRequest extends BaseEntity{
     private User requester;
     
     @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name="assignedOperator",referencedColumnName="id")
     private User assignedOperator;
     
     @Column(nullable = false)
@@ -44,15 +46,15 @@ public class ServiceRequest extends BaseEntity{
     @Column(nullable = false)
     private State state;
     
-    @OneToMany(targetEntity=Comment.class)
-    @ElementCollection(targetClass=Comment.class)
+    @OneToMany(targetEntity=Comment.class,mappedBy="serviceRequest") 
     private List<Comment> comments;
     
     @Column(nullable = false)
     private Date dateOfRequest;
     
     @ManyToOne(targetEntity = hu.elte.alkfejl.itservices.model.Service.class)
-    private Service requestedService;
+    @JoinColumn(name="requestedService",referencedColumnName="id")
+    private hu.elte.alkfejl.itservices.model.Service requestedService;
     
     public enum State{
         OPENED,IN_PROGRESS,CLOSED,REOPENED,BLOCKED

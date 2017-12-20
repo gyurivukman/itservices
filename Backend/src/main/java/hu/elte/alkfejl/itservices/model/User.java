@@ -1,5 +1,7 @@
 package hu.elte.alkfejl.itservices.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -12,6 +14,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -43,6 +46,10 @@ public class User extends BaseEntity {
     
     @Column(nullable = false)
     private String employeeid;
+    
+    @JsonIgnore
+    @OneToMany(targetEntity=Comment.class,mappedBy="createdBy")
+    private List<Comment> comments;
     
     @ManyToOne(targetEntity = Role.class)
     @JoinColumn(insertable=false)

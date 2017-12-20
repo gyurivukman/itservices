@@ -36,4 +36,7 @@ public class RequestService {
         return this.requestRepo.getRequestsMetadataForUser(user);
     }
     
+    public ServiceRequest getRequestById(int id){
+        return this.requestRepo.findById(id);
+    }
 }
