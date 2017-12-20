@@ -39,7 +39,7 @@
     <hr class="request-view-separator">
     <div id="request-userdata-container" *ngIf="json_data">
       <div id="userdata-header-container">
-        <span id="userdata-header">Request specifics:</span>
+        <span class="request-sub-title">Request specifics:</span>
       </div>
       <div id="userdata-formdata-container">
         <span class="request-data-property" *ngFor="let key of json_keys(json_data)">
@@ -49,10 +49,13 @@
       </div>
     </div>
   </div>
+  <!--
   <div id="request-operator-controls-container">
-    kontrolsz
-  </div>
+    controls for operator+ users
+  </div> -->
+  <hr class="request-view-separator">
   <div id="request-comments-container">
+    <span class="request-sub-title">Comments:</span>
     <div class="comment" *ngFor="let comment of requestData.comments">
       komment
     </div>

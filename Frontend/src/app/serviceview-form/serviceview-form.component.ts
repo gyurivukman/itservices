@@ -45,7 +45,6 @@ export class ServiceviewFormComponent implements OnInit {
         this.snackBar.open('Your service request has been sent!', 'OK', {
           duration: 3000,
         });
-        console.log(res);
         setTimeout(()=>{this.router.navigate(['/requests',res.id]);}, 2000);
       },err=>{
         console.log("Something bad happened! ",err);
